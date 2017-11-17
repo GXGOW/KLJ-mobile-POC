@@ -9,6 +9,7 @@
     "bcrypt": "^1.0.3",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
+    "date.js": "^0.3.2",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "express-jwt": "^5.3.0",
