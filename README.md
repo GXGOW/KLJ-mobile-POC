@@ -1,6 +1,17 @@
-# MEAN4+ Starter
+# KLJ Mobile: overzicht van activiteiten
 
-This project is based on the tutorial from [Coursetro.com](https://coursetro.com), located here:
-[Setting up an Angular 4 MEAN Stack (Tutorial)](https://coursetro.com/posts/code/84/Setting-up-an-Angular-4-MEAN-Stack-(Tutorial))
+*(gebaseerd op [MEAN4+ template](https://github.com/designcourse/mean4plus) )*
 
-Good luck!
+Dit is een conceptapplicatie waarin het mogelijk is om een overzicht te krijgen van de verschillende activiteiten, zowel voorbije als toekomstige.
+
+Functionaliteiten:
+
+* [ ] Krijg een overzicht van alle activiteiten
+* [ ] Account aanmaken + gebruikersgegevens bekijken/wijzigen
+* [ ] Details van andere leden bekijken
+* [ ] Jezelf op aanwezig zetten bij activiteiten
+* [ ] Aanwezigen bekijken
+* [ ] Activiteiten toevoegen
+* [ ] Details van gebruikers bekijken
+* [ ] Toevoegen aan kalender (exporteren naar CSV)
+* [ ] Login met Facebook
