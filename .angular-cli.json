@@ -18,9 +18,13 @@
     "testTsconfig": "tsconfig.spec.json",
     "prefix": "app",
     "styles": [
+      "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+      "../node_modules/materialize-css/dist/css/materialize.min.css",
       "styles.scss"
     ],
-    "scripts": [],
+    "scripts": [
+      "../node_modules/materialize-css/dist/js/materialize.min.js"
+    ],
     "environmentSource": "environments/environment.ts",
     "environments": {
       "dev": "environments/environment.ts",
