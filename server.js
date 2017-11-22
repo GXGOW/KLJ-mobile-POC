@@ -4,7 +4,7 @@ const path = require('path');
 const http = require('http');
 const app = express();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://klj-rest:Hqq69NYu5T7c@server.levls.be:27017?authSource=user', {
+mongoose.connect('mongodb://klj-rest:Hqq69NYu5T7c@server.levls.be:27017/?authSource=user', {
   useMongoClient: true
 });
 require('./server/models/User');
