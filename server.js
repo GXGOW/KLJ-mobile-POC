@@ -4,7 +4,7 @@ const path = require('path');
 const http = require('http');
 const app = express();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://klj-rest:Hqq69NYu5T7c@server.levls.be:27017/?authSource=user', {
+mongoose.connect('mongodb://klj-rest:Hqq69NYu5T7c@server.levls.be:27017/kljmobile?authSource=user', {
   useMongoClient: true
 });
 require('./server/models/User');
@@ -16,6 +16,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
+// var dummy = require('./server/data/Generate');
+// dummy.dummies();
 
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
