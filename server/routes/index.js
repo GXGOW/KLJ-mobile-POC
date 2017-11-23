@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var Activity = mongoose.model('Activity');
+var User = mongoose.model('User');
 
 let response = {
   status: 200,
@@ -13,7 +16,10 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/get_activities', function (req, res, next) {
-  res.send(response);
+  Activity.find({}).exec(function (err, activities) {
+    if (err) res.send(err);
+    res.send(activities);
+  });
 });
 
 module.exports = router;
