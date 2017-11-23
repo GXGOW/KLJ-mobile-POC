@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Activity } from './activity.model';
 @Injectable()
 export class ActivityDataService {
-  private _appUrl = 'http://localhost:4200/api/activities';
+  private _appUrl = 'http://localhost:3000/api/activities';
   private _activities = new Array<Activity>();
   constructor(private http: Http) {
 
