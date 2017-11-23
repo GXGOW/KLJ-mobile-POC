@@ -14,43 +14,43 @@ exports.dummies = function () {
 
   var activities = [
     new Activity({
-      name: 'Zwemmen',
+      title: 'Zwemmen',
       description: 'We gaan eens gaan zwemmen. Hoera, feest, dansen dansen!'
     }),
     new Activity({
-      name: 'Bosspel',
+      title: 'Bosspel',
       description: 'Een spel in het bos'
     }),
     new Activity({
-      name: 'Het kip',
+      title: 'Het kip',
       description: 'Mooi'
     }),
     new Activity({
-      name: 'Nog een activiteit',
+      title: 'Nog een activiteit',
       description: 'Jaja, er komt er nog eentje bij'
     }),
     new Activity({
-      name: 'Herman Van Veen',
+      title: 'Herman Van Veen',
       description: 'Als het ware een optreden van de enige echte Herman'
     }),
     new Activity({
-      name: 'Moddertocht',
+      title: 'Moddertocht',
       description: 'Modder modder modder modder modder modder modder modder'
     }),
     new Activity({
-      name: 'Activiteit',
+      title: 'Activiteit',
       description: 'Lorem ipsum dolor en heel dienen bazaar'
     }),
     new Activity({
-      name: 'Rick Ashtley',
+      title: 'Rick Ashtley',
       description: 'We\'re no strangers to love. You know the rules, and so do I'
     }),
     new Activity({
-      name: 'End my sorrow',
+      title: 'End my sorrow',
       description: 'Wake me up inside'
     }),
     new Activity({
-      name: 'Spicy meme night',
+      title: 'Spicy meme night',
       description: 'Avondje alleen maar de beste van de beste memes'
     })
   ];
