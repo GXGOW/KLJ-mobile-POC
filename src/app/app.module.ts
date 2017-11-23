@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { ActivityComponent } from './activity/activity.component';
+import { ActivityListComponent } from './activity-list/activity-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ActivityComponent
+    ActivityComponent,
+    ActivityListComponent
   ],
   imports: [
     BrowserModule,
