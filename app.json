@@ -1,0 +1,21 @@
+{
+  "name": "KLJ-mobile",
+  "description": "Overzicht van alle activiteiten en meer",
+  "scripts": {
+  },
+  "env": {
+    "NUCLEAR_LAUNCH_CODES": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
