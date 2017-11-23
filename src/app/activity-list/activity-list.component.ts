@@ -8,8 +8,8 @@ import { Activity } from '../activity.model';
 export class ActivityListComponent implements OnInit {
   private _activities = new Array<Activity>();
   constructor() {
-    for (let i = 0; i < 11; i++) {
-      this._activities.push(new Activity('Activiteit ' + 1, 'Beschrijving'));
+    for (let i = 1; i <= 12; i++) {
+      this._activities.push(new Activity('Activiteit ' + i, 'Beschrijving'));
     }
   }
 
