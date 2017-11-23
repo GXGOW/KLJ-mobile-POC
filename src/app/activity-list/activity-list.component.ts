@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Activity } from '../activity.model';
+import { ActivityDataService } from '../activity-data.service';
 @Component({
   selector: 'app-activity-list',
   templateUrl: './activity-list.component.html',
-  styleUrls: ['./activity-list.component.scss']
+  styleUrls: ['./activity-list.component.scss'],
+  providers: [ActivityDataService]
 })
 export class ActivityListComponent implements OnInit {
-  private _activities = new Array<Activity>();
-  constructor() {
-    for (let i = 0; i < 11; i++) {
-      this._activities.push(new Activity('Activiteit ' + 1, 'Beschrijving'));
-    }
+  private _activities;
+  constructor(private _activityDataService: ActivityDataService) {
+
   }
 
   ngOnInit() {
-
+    this._activities = this._activityDataService.activities;
   }
 
   get activities() {
     return this._activities;
+  }
+  newActivityAdded(activity) {
+    this._activityDataService.addNewActivity(activity);
   }
 
 }
