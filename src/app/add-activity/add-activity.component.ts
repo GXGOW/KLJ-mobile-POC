@@ -10,23 +10,27 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 @Component({
   selector: 'app-add-activity',
   templateUrl: './add-activity.component.html',
-  styleUrls: ['./add-activity.component.scss']
+  styleUrls: ['./add-activity.component.scss'],
+  providers: [ActivityDataService]
 })
 export class AddActivityComponent implements OnInit {
   @Output() public newActivity = new EventEmitter<Activity>();
-  private _activity: FormGroup;
-  constructor(public dialogRef: MatDialogRef<AddActivityComponent>
-    /*private fb: FormBuilder, private _activityDataService: ActivityDataService, private _router: Router*/) { }
+  private activity: FormGroup;
+  constructor(public dialogRef: MatDialogRef<AddActivityComponent>,
+    private fb: FormBuilder, private _activityDataService: ActivityDataService) { }
 
   ngOnInit() {
-    /* this.activity = this.fb.group({
-       title: ['', [Validators.required, Validators.minLength(2)]],
-       description: ['', [Validators.required, Validators.minLength(10)]]
-     });*/
+    this.activity = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(2)]],
+      description: ['', [Validators.required, Validators.minLength(10)]]
+    });
   }
 
   onSubmit() {
-    // this.newActivity.emit(this._activity);
+    const act = new Activity(this.activity.value.title, this.activity.value.description);
+    console.log(act);
+    this._activityDataService.addNewActivity(act).subscribe();
+    this.dialogRef.close();
   }
 
   onNoClick(): void {
