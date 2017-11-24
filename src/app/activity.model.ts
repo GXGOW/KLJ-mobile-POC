@@ -1,4 +1,5 @@
 export class Activity {
+    private _id: string;
     private _title: string;
     private _description: string;
     private _organisedBy: [string];
@@ -6,9 +7,19 @@ export class Activity {
     private _location: string;
     private _attendees: [string];
 
+    static fromJSON(json): Activity {
+        const act = new Activity(json.title, json.description);
+        act._id = json._id;
+        return act;
+    }
+
     constructor(title: string, description: string) {
         this._title = title;
         this._description = description;
+    }
+
+    get id(): string {
+        return this._id;
     }
 
     get title(): string {
@@ -25,5 +36,13 @@ export class Activity {
 
     set description(description: string) {
         this._description = description;
+    }
+
+    toJSON() {
+        return {
+            _id: this._id,
+            title: this._title,
+            description: this._description
+        };
     }
 }
