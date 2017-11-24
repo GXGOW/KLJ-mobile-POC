@@ -12,7 +12,7 @@ export class AppComponent {
 
   openDialog(): void {
     const dialog = this.dialog.open(AddActivityComponent, {
-      width: '500px'
+      width: '700px'
     });
 
     dialog.afterClosed().subscribe(result => {
