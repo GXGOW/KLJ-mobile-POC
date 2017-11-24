@@ -22,4 +22,12 @@ router.get('/activities', function (req, res, next) {
   });
 });
 
+router.post('/add_activity', function (req, res, next) {
+  let new_activity = new Activity(req.body);
+  new_activity.save(function (err, act) {
+    if (err) res.send(err);
+    res.send(act);
+  })
+});
+
 module.exports = router;
