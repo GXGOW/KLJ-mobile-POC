@@ -6,12 +6,13 @@ Dit is een conceptapplicatie waarin het mogelijk is om een overzicht te krijgen 
 
 Functionaliteiten:
 
-* [ ] Krijg een overzicht van alle activiteiten
+* [x] Krijg een overzicht van alle activiteiten
+* [ ] Details van activiteit bekijken
 * [ ] Account aanmaken + gebruikersgegevens bekijken/wijzigen
 * [ ] Details van andere leden bekijken
 * [ ] Jezelf op aanwezig zetten bij activiteiten
 * [ ] Aanwezigen bekijken
-* [ ] Activiteiten toevoegen
+* [x] Activiteiten toevoegen
 * [ ] Details van gebruikers bekijken
 * [ ] Toevoegen aan kalender (exporteren naar CSV)
 * [ ] Login met Facebook
