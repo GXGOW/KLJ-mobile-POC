@@ -53,6 +53,22 @@ export class Activity {
         this._date = date;
     }
 
+    get organisedBy(): [string] {
+        return this._organisedBy;
+    }
+
+    set organisedBy(organisedBy) {
+        this._organisedBy = organisedBy;
+    }
+
+    get location(): string {
+        return this._location;
+    }
+
+    set location(location: string) {
+        this._location = location;
+    }
+
     toJSON() {
         return {
             _id: this._id,
