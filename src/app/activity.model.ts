@@ -13,9 +13,16 @@ export class Activity {
         return act;
     }
 
-    constructor(title: string, description: string) {
+    constructor(title: string, description: string, date?: Date, time?: string, organisedBy?: [string], location?: string) {
         this._title = title;
         this._description = description;
+        this._date = date;
+        if (this._date) {
+            const temptime = time.split(':');
+            this._date.setHours(parseInt(temptime[0], 10), parseInt(temptime[1], 10));
+        }
+        this._organisedBy = organisedBy;
+        this._location = location;
     }
 
     get id(): string {
@@ -36,6 +43,14 @@ export class Activity {
 
     set description(description: string) {
         this._description = description;
+    }
+
+    get date(): Date {
+        return this._date;
+    }
+
+    set date(date: Date) {
+        this._date = date;
     }
 
     toJSON() {
