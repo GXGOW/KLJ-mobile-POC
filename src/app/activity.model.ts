@@ -8,19 +8,15 @@ export class Activity {
     private _attendees: [string];
 
     static fromJSON(json): Activity {
-        const act = new Activity(json.title, json.description);
+        const act = new Activity(json.title, json.description, json.date);
         act._id = json._id;
         return act;
     }
 
-    constructor(title: string, description: string, date?: Date, time?: string, organisedBy?: [string], location?: string) {
+    constructor(title: string, description: string, date?: Date, organisedBy?: [string], location?: string) {
         this._title = title;
         this._description = description;
         this._date = date;
-        if (this._date) {
-            const temptime = time.split(':');
-            this._date.setHours(parseInt(temptime[0], 10), parseInt(temptime[1], 10));
-        }
         this._organisedBy = organisedBy;
         this._location = location;
     }
@@ -47,6 +43,15 @@ export class Activity {
 
     get date(): Date {
         return this._date;
+    }
+
+    get dateShort(): string {
+        const tempdate = new Date(this._date);
+        if (tempdate) {
+            const day = tempdate.getDate();
+            const month = tempdate.toLocaleString('nl-BE', { month: 'long' }).substr(0, 3);
+            return day + ' ' + month;
+        } else { return ''; };
     }
 
     set date(date: Date) {
