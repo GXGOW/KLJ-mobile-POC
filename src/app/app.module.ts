@@ -8,7 +8,7 @@ import { ActivityListComponent } from './activity-list/activity-list.component';
 import { AddActivityComponent } from './add-activity/add-activity.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes = [
