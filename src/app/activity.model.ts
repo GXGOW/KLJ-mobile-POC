@@ -13,7 +13,7 @@ export class Activity {
         return act;
     }
 
-    constructor(title: string, description: string, date?: Date, organisedBy?: [string], location?: string) {
+    constructor(title: string, description: string, date?: Date, location?: string, organisedBy?: [string]) {
         this._title = title;
         this._description = description;
         this._date = date;
@@ -51,7 +51,7 @@ export class Activity {
             const day = tempdate.getDate();
             const month = tempdate.toLocaleString('nl-BE', { month: 'long' }).substr(0, 3);
             return day + ' ' + month;
-        } else { return ''; };
+        } else { return ''; }
     }
 
     set date(date: Date) {

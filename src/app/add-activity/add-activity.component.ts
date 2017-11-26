@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import * as moment from 'moment';
 declare const jquery: any;
 declare const $: any;
 @Component({
@@ -26,12 +27,12 @@ export class AddActivityComponent implements OnInit {
       title: ['', [Validators.required, Validators.minLength(2)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       date: ['', [Validators.required]],
-      time: ['']
+      time: [''],
+      location: ['']
     });
     // Parent variable
     const par = this;
     // Initialize materialize datepicker
-    console.log(this.activity);
     $('.datepicker').pickadate({
       selectMonths: true,
       selectYears: 5,
@@ -56,14 +57,18 @@ export class AddActivityComponent implements OnInit {
       canceltext: 'Annuleer',
       autoclose: false
     });
-
-
   }
 
   onSubmit() {
     this.activity.patchValue({ time: $('#time').val() });
+    if (this.activity.value.date && this.activity.value.time) {
+      const temptime = this.activity.value.time.split(':');
+      this.activity.patchValue({
+        date: moment(this.activity.value.date, 'dd/mm/yyyy').toDate().setHours(parseInt(temptime[0], 10), parseInt(temptime[1], 10))
+      });
+    }
     const act = new Activity(this.activity.value.title, this.activity.value.description,
-      this.activity.value.date, this.activity.value.time);
+      this.activity.value.date, this.activity.value.location);
     this._activityDataService.addNewActivity(act).subscribe();
     this.dialogRef.close();
   }
