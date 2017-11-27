@@ -55,5 +55,21 @@ exports.dummies = function () {
     })
   ];
 
+  var users = [];
+  var user1 = new User({
+    username: 'nicolas.loots@outlook.be',
+    role: 'leader'
+  });
+  user1.setPassword('HermanVanVeen');
+  users.push(user1);
+
+  var user2 = new User({
+    username: 'jef.malfliet@kljhamme.be',
+    role: 'member'
+  });
+  user2.setPassword('HetKipMooi');
+  users.push(user2);
+
   Activity.collection.insert(activities);
+  User.collection.insert(users);
 }
