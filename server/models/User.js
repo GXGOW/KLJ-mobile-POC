@@ -7,7 +7,7 @@ var datejs = require('date.js');
 
 
 var UserSchema = new Schema({
-  email: {
+  username: {
     type: String,
     lowercase: true,
     unique: true,
@@ -17,7 +17,8 @@ var UserSchema = new Schema({
   salt: String,
   role: {
     type: String,
-    enum: ['leider', 'lid', 'admin']
+    enum: ['leader', 'member'],
+    default: 'member'
   },
   address: {
     street: String,
@@ -32,6 +33,8 @@ var UserSchema = new Schema({
     type: Date,
     required: true
   }
+}, {
+  timestamps: true
 });
 
 UserSchema.methods.setPassword = function (password) {
