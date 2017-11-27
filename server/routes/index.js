@@ -22,6 +22,12 @@ router.get('/activities', function (req, res, next) {
   });
 });
 
+router.get('/get_image', function (req, res, next) {
+  Activity.findById('5a1b34970e83a31b58c797d1').exec(function (err, act) {
+    res.send(act.image.data.toString('base64'));
+  });
+});
+
 router.post('/add_activity', function (req, res, next) {
   let new_activity = new Activity(req.body);
   new_activity.save(function (err, act) {

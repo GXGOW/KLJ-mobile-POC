@@ -21,6 +21,15 @@
         <input formControlName="location" id="location" type="text" class="validate">
         <label for="location">Locatie</label>
       </div>
+      <div class="input-field file-field col s12">
+        <div class="btn">
+          <span>Bladeren</span>
+          <input formControlName="image" type="file" id="image" (change)="onFileChange($event)">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload file" />
+        </div>
+      </div>
     </div>
     <button type="submit " class="waves-effect waves-light btn ">Aanmaken</button>
   </form>

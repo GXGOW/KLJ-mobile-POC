@@ -28,7 +28,8 @@ export class AddActivityComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(10)]],
       date: ['', [Validators.required]],
       time: [''],
-      location: ['']
+      location: [''],
+      image: null
     });
     // Parent variable
     const par = this;
@@ -59,6 +60,20 @@ export class AddActivityComponent implements OnInit {
     });
   }
 
+  onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.activity.get('image').setValue({
+          fileType: file.type,
+          data: reader.result.split(',')[1]
+        });
+      };
+    }
+  }
+
   onSubmit() {
     this.activity.patchValue({ time: $('#time').val() });
     if (this.activity.value.date && this.activity.value.time) {
@@ -68,7 +83,7 @@ export class AddActivityComponent implements OnInit {
       });
     }
     const act = new Activity(this.activity.value.title, this.activity.value.description,
-      this.activity.value.date, this.activity.value.location);
+      this.activity.value.date, this.activity.value.location, this.activity.value.image);
     this._activityDataService.addNewActivity(act).subscribe();
     this.dialogRef.close();
   }
