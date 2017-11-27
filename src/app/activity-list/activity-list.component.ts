@@ -8,20 +8,17 @@ import { ActivityDataService } from '../activity-data.service';
   providers: [ActivityDataService]
 })
 export class ActivityListComponent implements OnInit {
-  private _activities;
+  private _activities: Activity[];
   constructor(private _activityDataService: ActivityDataService) {
 
   }
 
   ngOnInit() {
-    this._activities = this._activityDataService.activities;
+    this._activityDataService.activities.subscribe(items => this._activities = items);
   }
 
   get activities() {
     return this._activities;
-  }
-  newActivityAdded(activity) {
-    this._activityDataService.addNewActivity(activity);
   }
 
 }

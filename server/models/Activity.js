@@ -22,6 +22,10 @@ var ActivitySchema = new Schema({
     type: String,
     default: 'KLJ lokaal'
   },
+  image: {
+    data: Buffer,
+    fileType: String
+  },
   attendees: [{
     type: Schema.Types.ObjectId,
     ref: 'User'
