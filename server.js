@@ -30,6 +30,7 @@ app.use(passport.initialize());
 
 // API location
 app.use('/api', index);
+app.use('/user', users);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
