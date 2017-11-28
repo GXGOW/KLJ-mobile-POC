@@ -10,7 +10,7 @@ passport.use(new LocalStrategy(
       username: username
     }, function (err, user) {
       if (err) return done(err);
-      if (!user /* || !user.validPassword(password) */ ) {
+      if (!user || !user.validPassword(password)) {
         return done(null, false, {
           message: 'Ongeldig e-mailadres of wachtwoord'
         });

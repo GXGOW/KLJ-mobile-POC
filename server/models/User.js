@@ -11,7 +11,7 @@ var UserSchema = new Schema({
     type: String,
     lowercase: true,
     unique: true,
-    required: true,
+    required: true
   },
   hash: String,
   salt: String,
