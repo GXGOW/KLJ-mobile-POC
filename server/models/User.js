@@ -20,6 +20,8 @@ var UserSchema = new Schema({
     enum: ['leader', 'member'],
     default: 'member'
   },
+  firstname: String,
+  lastname: String,
   address: {
     street: String,
     number: String,
