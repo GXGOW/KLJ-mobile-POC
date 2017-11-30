@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddActivityComponent } from './add-activity/add-activity.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,7 +18,19 @@ export class AppComponent {
     });
 
     dialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+
+  loginDialog(): void {
+    const dialog = this.dialog.open(LoginComponent, {
+      width: '700px'
+    });
+  }
+
+  registerDialog(): void {
+    const dialog = this.dialog.open(RegisterComponent, {
+      width: '700px'
     });
   }
 }

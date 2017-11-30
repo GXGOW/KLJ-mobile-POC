@@ -1,0 +1,50 @@
+<div class="row">
+  <form [formGroup]='user' (ngSubmit)='onSubmit()'>
+    <div class="input-field col s12">
+      <input formControlName="username" id="username" type="text" class="validate">
+      <label for="username">E-mail</label>
+    </div>
+    <div formGroupName='passwordGroup'>
+      <div class="input-field col s6">
+        <input formControlName="password" id="password" type="password" class="validate">
+        <label for="password">Wachtwoord</label>
+      </div>
+      <div class="input-field col s6">
+        <input formControlName="confirmPassword" id="confirmPassword" type="password" class="validate">
+        <label for="confirmPassword ">Herhaal Wachtwoord</label>
+      </div>
+    </div>
+    <div class="input-field col s6">
+      <input formControlName="firstname" id="firstname" type="text" class="validate">
+      <label for="firstname">Voornaam</label>
+    </div>
+    <div class="input-field col s6">
+      <input formControlName="lastname" id="lastname" type="text" class="validate">
+      <label for="lastname">Familienaam</label>
+    </div>
+    <div class="input-field col s6">
+      <input formControlName="street" id="street" type="text" class="validate">
+      <label for="street">Straat</label>
+    </div>
+    <div class="input-field col s2">
+      <input formControlName="number" id="number" type="text" class="validate">
+      <label for="number">Nr.</label>
+    </div>
+    <div class="input-field col s4">
+      <input formControlName="postalCode" id="postalCode" type="text" class="validate">
+      <label for="postalCode">Postcode</label>
+    </div>
+    <div class="input-field col s12">
+      <input formControlName="city" id="city" type="text" class="validate">
+      <label for="city">Gemeente/Stad</label>
+    </div>
+    <div class="input-field col s8">
+      <input formControlName="phoneNumber" id="phoneNumber" type="text" class="validate">
+      <label for="phoneNumber">Telefoon/Gsm</label>
+    </div>
+    <div class="input-field col s4 ">
+      <input formControlName="birthday" id="birthday" type="text" class="datepicker">
+      <label for="birthday">Geboortedatum</label>
+    </div>
+  </form>
+</div>
