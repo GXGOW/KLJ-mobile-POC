@@ -49,10 +49,12 @@ export class AuthenticationService {
       { username: username, password: password })
       .map(res => res.json()).map(res => {
         const token = res.token;
+        const firstname = res.firstname;
+        const role = res.role;
         if (token) {
           localStorage.setItem('currentUser',
-            JSON.stringify({ username: username, token: res.token }));
-          this._user$.next(username);
+            JSON.stringify({ username: username, token: token, firstname: firstname, role: role }));
+          this._user$.next([username, token, firstname, role]);
           return true;
         } else {
           return false;
