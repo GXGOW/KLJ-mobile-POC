@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogContent, MatDialogTitle } from '@angular/material';
 import * as moment from 'moment';
 declare const jquery: any;
 declare const $: any;
@@ -18,7 +18,7 @@ declare const $: any;
 })
 export class AddActivityComponent implements OnInit {
   @Output() public newActivity = new EventEmitter<Activity>();
-  private activity: FormGroup;
+  public activity: FormGroup;
   constructor(public dialogRef: MatDialogRef<AddActivityComponent>,
     private fb: FormBuilder, private _activityDataService: ActivityDataService) { }
 
