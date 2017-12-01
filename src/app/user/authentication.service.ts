@@ -7,15 +7,15 @@ import 'rxjs/add/operator/map';
 export class AuthenticationService {
 
   private _url = window.location.origin + '/user';
-  private _user$: BehaviorSubject<string>;
+  private _user$: BehaviorSubject<[string]>;
 
   constructor(private http: Http) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this._user$ = new BehaviorSubject<string>(
-      currentUser && currentUser.username);
+    this._user$ = new BehaviorSubject<[string]>(
+      currentUser && [currentUser.username, currentUser.firstname, currentUser.role]);
   }
 
-  get user$(): BehaviorSubject<string> {
+  get user$(): BehaviorSubject<[string]> {
     return this._user$;
   }
 
@@ -24,10 +24,12 @@ export class AuthenticationService {
       { username: username, password: password })
       .map(res => res.json()).map(res => {
         const token = res.token;
+        const firstname = res.firstname;
+        const role = res.role;
         if (token) {
           localStorage.setItem('currentUser',
-            JSON.stringify({ username: username, token: token }));
-          this._user$.next(username);
+            JSON.stringify({ username: username, token: token, firstname: firstname, role: role }));
+          this._user$.next([username, token, firstname, role]);
           return true;
         } else {
           return false;
