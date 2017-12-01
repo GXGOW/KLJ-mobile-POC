@@ -1,3 +1,4 @@
+import { AuthenticationService } from '../user/authentication.service';
 import { ActivityDataService } from './../activity-data.service';
 import { Activity } from '../activity.model';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
@@ -6,7 +7,7 @@ import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogContent, MatDialogTitle } from '@angular/material';
 import * as moment from 'moment';
 declare const jquery: any;
 declare const $: any;
@@ -14,11 +15,11 @@ declare const $: any;
   selector: 'app-add-activity',
   templateUrl: './add-activity.component.html',
   styleUrls: ['./add-activity.component.scss'],
-  providers: [ActivityDataService]
+  providers: [ActivityDataService, AuthenticationService]
 })
 export class AddActivityComponent implements OnInit {
   @Output() public newActivity = new EventEmitter<Activity>();
-  private activity: FormGroup;
+  public activity: FormGroup;
   constructor(public dialogRef: MatDialogRef<AddActivityComponent>,
     private fb: FormBuilder, private _activityDataService: ActivityDataService) { }
 
@@ -76,11 +77,12 @@ export class AddActivityComponent implements OnInit {
 
   onSubmit() {
     this.activity.patchValue({ time: $('#time').val() });
+    this.activity.patchValue({
+      date: moment(this.activity.value.date, 'DD/MM/YYYY').toDate()
+    });
     if (this.activity.value.date && this.activity.value.time) {
       const temptime = this.activity.value.time.split(':');
-      this.activity.patchValue({
-        date: moment(this.activity.value.date, 'dd/mm/yyyy').toDate().setHours(parseInt(temptime[0], 10), parseInt(temptime[1], 10))
-      });
+      this.activity.patchValue(this.activity.value.date.setHours(parseInt(temptime[0], 10), parseInt(temptime[1], 10)));
     }
     const act = new Activity(this.activity.value.title, this.activity.value.description,
       this.activity.value.date, this.activity.value.location, this.activity.value.image);
@@ -88,7 +90,7 @@ export class AddActivityComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onNoClick(): void {
+  close(): void {
     this.dialogRef.close();
   }
 

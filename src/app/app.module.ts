@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 
 const routes = [
   { path: 'list', component: ActivityListComponent },
@@ -20,7 +22,9 @@ const routes = [
     AppComponent,
     ActivityComponent,
     ActivityListComponent,
-    AddActivityComponent
+    AddActivityComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ const routes = [
     ReactiveFormsModule
   ],
   entryComponents: [
-    AddActivityComponent
+    AddActivityComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   bootstrap: [AppComponent]
 })

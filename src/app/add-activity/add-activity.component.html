@@ -1,3 +1,8 @@
+<a (click)="close()">
+  <i class="material-icons right">close</i>
+</a>
+<h1 mat-dialog-title>
+  Activiteit toevoegen</h1>
 <div class="row">
   <form [formGroup]="activity" (ngSubmit)="onSubmit()" class="col s12 ">
     <div class="row ">
@@ -14,8 +19,8 @@
         <label for="time">Tijd</label>
       </div>
       <div class="input-field col s12">
-        <textarea formControlName="description" id="description " type="text " class="materialize-textarea "></textarea>
-        <label for="description ">Beschrijving</label>
+        <textarea formControlName="description" id="description" type="text" class="materialize-textarea"></textarea>
+        <label for="description">Beschrijving</label>
       </div>
       <div class="input-field col s12">
         <input formControlName="location" id="location" type="text" class="validate">
@@ -31,6 +36,8 @@
         </div>
       </div>
     </div>
-    <button type="submit " class="waves-effect waves-light btn ">Aanmaken</button>
+    <mat-dialog-actions>
+      <button type="submit" class="waves-effect waves-light btn">Aanmaken</button>
+    </mat-dialog-actions>
   </form>
 </div>
