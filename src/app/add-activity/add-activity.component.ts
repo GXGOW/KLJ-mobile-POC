@@ -1,3 +1,4 @@
+import { AuthenticationService } from '../user/authentication.service';
 import { ActivityDataService } from './../activity-data.service';
 import { Activity } from '../activity.model';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
@@ -14,7 +15,7 @@ declare const $: any;
   selector: 'app-add-activity',
   templateUrl: './add-activity.component.html',
   styleUrls: ['./add-activity.component.scss'],
-  providers: [ActivityDataService]
+  providers: [ActivityDataService, AuthenticationService]
 })
 export class AddActivityComponent implements OnInit {
   @Output() public newActivity = new EventEmitter<Activity>();
