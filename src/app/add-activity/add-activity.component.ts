@@ -89,7 +89,7 @@ export class AddActivityComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onNoClick(): void {
+  onClose(): void {
     this.dialogRef.close();
   }
 

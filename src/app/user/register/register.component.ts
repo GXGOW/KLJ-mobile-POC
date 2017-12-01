@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     return <FormControl>this.user.get('passwordGroup').get('password');
   }
 
-  constructor(private authService: AuthenticationService, private fb: FormBuilder) { }
+  constructor(public dialogRef: MatDialogRef<RegisterComponent>, private authService: AuthenticationService, private fb: FormBuilder) { }
 
   ngOnInit() {
     // TODO SSV username
@@ -67,6 +67,14 @@ export class RegisterComponent implements OnInit {
         }
       }
     });
+  }
+
+  onSubmit() {
+    return 0;
+  }
+
+  close(): void {
+    this.dialogRef.close();
   }
 
 }

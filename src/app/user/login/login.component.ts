@@ -33,4 +33,8 @@ export class LoginComponent implements OnInit {
     }, err => this.error = err.json().message);
   }
 
+  close() {
+    this.dialogRef.close();
+  }
+
 }
