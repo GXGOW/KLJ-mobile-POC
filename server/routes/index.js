@@ -40,6 +40,10 @@ router.get('/get_image', function (req, res, next) {
 
 router.post('/add_activity', auth, function (req, res, next) {
   let new_activity = new Activity(req.body);
+  // Workaround for NodeJS using the wrong timezone for some reason
+  if (req.body.date) {
+    new_activity.date.setHours(new_activity.date.getHours() + 1);
+  }
   new_activity.save(function (err, act) {
     if (err) res.send(err);
     res.send(act);
