@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 export class AuthenticationService {
 
   private _url = window.location.origin + '/user';
-  private _user$: BehaviorSubject<[string]>;
+  public _user$: BehaviorSubject<[string]>;
 
   constructor(private http: Http) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -16,11 +16,20 @@ export class AuthenticationService {
   }
 
   get user$(): BehaviorSubject<[string]> {
+    console.log(this._user$);
     return this._user$;
   }
 
   get token(): string {
     return JSON.parse(localStorage.getItem('currentUser')).token;
+  }
+
+  get role(): string {
+    return JSON.parse(localStorage.getItem('currentUser')).role;
+  }
+
+  get firstname(): string {
+    return JSON.parse(localStorage.getItem('currentUser')).firstname;
   }
 
   login(username: string, password: string): Observable<boolean> {

@@ -15,11 +15,9 @@ declare const $: any;
 })
 export class AppComponent implements OnInit {
   constructor(private authService: AuthenticationService, public dialog: MatDialog) {
-
   }
 
   ngOnInit() {
-
     $('.dropdown-button').dropdown({
       inDuration: 300,
       outDuration: 225,
@@ -35,6 +33,14 @@ export class AppComponent implements OnInit {
 
   get currentUser(): Observable<[string]> {
     return this.authService.user$;
+  }
+
+  get firstname(): string {
+    return this.authService.firstname;
+  }
+
+  get role(): string {
+    return this.authService.role;
   }
 
   addActivityDialog(): void {

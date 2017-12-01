@@ -3,7 +3,7 @@
     <a href="#" class="brand-logo">KLJ Mobile</a>
     <ul id="nav-mobile" class="right">
       <li *ngIf='(currentUser | async) else authPart'>
-        <a class="dropdown-button" data-activates='dropdown1'>Welkom, {{currentUser._value[1]}}</a>
+        <a class="dropdown-button" data-activates='dropdown1'>Welkom, {{firstname}}</a>
         <ul id="dropdown1" class="dropdown-content">
           <li>
             <a>Profiel</a>
@@ -27,7 +27,7 @@
 </nav>
 <div class="container ">
   <app-activity-list></app-activity-list>
-  <div *ngIf='(currentUser | async) && currentUser._value[2] === "leader"' class="row ">
+  <div *ngIf='role === "leader"' class="row ">
     <div class="fixed-action-btn ">
       <a (click)="addActivityDialog() " class="btn-floating btn-large waves-effect waves-light red ">
         <i class="material-icons ">add</i>
