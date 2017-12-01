@@ -28,7 +28,9 @@ router.post('/login', function (req, res, next) {
     if (err) res.send(err);
     if (user) {
       return res.json({
-        token: user.generateJWT()
+        token: user.generateJWT(),
+        firstname: user.firstname,
+        role: user.role
       });
       return res.json('Yes hoera');
     } else {

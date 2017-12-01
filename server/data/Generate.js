@@ -57,6 +57,8 @@ exports.dummies = function () {
 
   var users = [];
   var user1 = new User({
+    firstname: 'Nicolas',
+    lastname: 'Loots',
     username: 'nicolas.loots@outlook.be',
     role: 'leader'
   });
@@ -64,6 +66,8 @@ exports.dummies = function () {
   users.push(user1);
 
   var user2 = new User({
+    firstname: 'Jef',
+    lastname: 'Malfliet',
     username: 'jef.malfliet@kljhamme.be',
     role: 'member'
   });
