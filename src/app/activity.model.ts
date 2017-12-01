@@ -89,8 +89,10 @@ export class Activity {
             _id: this._id,
             title: this._title,
             description: this._description,
-            location: this._location,
             organisedBy: this._organisedBy,
+            date: this._date,
+            attendees: this._attendees,
+            location: this._location,
             image: this._image
         };
     }
