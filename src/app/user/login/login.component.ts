@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.user.value.username, this.user.value.password).subscribe(val => {
       if (val) {
-        console.log(val);
         this.dialogRef.close();
         location.reload();
       }
