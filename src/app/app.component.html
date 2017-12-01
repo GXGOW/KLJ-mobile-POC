@@ -2,23 +2,43 @@
   <div class="nav-wrapper container">
     <a href="#" class="brand-logo">KLJ Mobile</a>
     <ul id="nav-mobile" class="right">
-      <li>
-        <a href="#" (click)="registerDialog()">Registreer</a>
+      <li *ngIf='(currentUser | async) else authPart'>
+        <a class="dropdown-button" data-activates='dropdown1'>Welkom, {{currentUser._value[1]}}</a>
+        <ul id="dropdown1" class="dropdown-content">
+          <li>
+            <a>Profiel</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a (click)="logout()">Log uit</a>
+          </li>
+        </ul>
       </li>
-      <li>
-        <!--<a href="#" (click)="openDialog()" class="material-icons" id="add-activity">add</a>-->
-        <a href="#" (click)="loginDialog()">Login</a>
-      </li>
+      <ng-template #authPart>
+        <li>
+          <a (click)="registerDialog()">Registreer</a>
+        </li>
+        <li>
+          <a (click)="loginDialog()">Login</a>
+        </li>
+      </ng-template>
     </ul>
   </div>
 </nav>
-<div class="container">
+<div class="container ">
   <app-activity-list></app-activity-list>
+  <div *ngIf='(currentUser | async) && currentUser._value[2] === "leader"' class="row ">
+    <div class="fixed-action-btn ">
+      <a (click)="addActivityDialog() " class="btn-floating btn-large waves-effect waves-light red ">
+        <i class="material-icons ">add</i>
+      </a>
+    </div>
+  </div>
 </div>
-<footer class="page-footer blue lighten-1">
-  <div class="footer-copyright blue lighten-1">
+<footer class="page-footer blue lighten-1 ">
+  <div class="footer-copyright blue lighten-1 ">
     <div class="container">
-      <a href="http://nico.levls.be">&copy; 2017 Nicolas Loots</a>
+      <a href="http://nico.levls.be ">&copy; 2017 Nicolas Loots</a>
     </div>
   </div>
 </footer>

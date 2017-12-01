@@ -1,24 +1,45 @@
-import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddActivityComponent } from './add-activity/add-activity.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
+import { AuthenticationService } from './user/authentication.service';
+declare const jquery: any;
+declare const $: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [AuthenticationService]
 })
-export class AppComponent {
-  constructor(public dialog: MatDialog) {
+export class AppComponent implements OnInit {
+  constructor(private authService: AuthenticationService, public dialog: MatDialog) {
+
   }
 
-  openDialog(): void {
+  ngOnInit() {
+
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false,
+      hover: true,
+      gutter: 0,
+      belowOrigin: false,
+      alignment: 'left',
+      stopPropagation: false
+    }
+    );
+  }
+
+  get currentUser(): Observable<[string]> {
+    return this.authService.user$;
+  }
+
+  addActivityDialog(): void {
     const dialog = this.dialog.open(AddActivityComponent, {
       width: '700px'
-    });
-
-    dialog.afterClosed().subscribe(result => {
-      console.log(result);
     });
   }
 
@@ -32,5 +53,10 @@ export class AppComponent {
     const dialog = this.dialog.open(RegisterComponent, {
       width: '700px'
     });
+  }
+
+  logout(): void {
+    this.authService.logout();
+    location.reload();
   }
 }
