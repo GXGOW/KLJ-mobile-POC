@@ -16,7 +16,6 @@ export class AuthenticationService {
   }
 
   get user$(): BehaviorSubject<[string]> {
-    console.log(this._user$);
     return this._user$;
   }
 
@@ -25,11 +24,11 @@ export class AuthenticationService {
   }
 
   get role(): string {
-    return JSON.parse(localStorage.getItem('currentUser')).role;
+    return (localStorage.getItem('currentUser')) ? JSON.parse(localStorage.getItem('currentUser')).role : '';
   }
 
   get firstname(): string {
-    return JSON.parse(localStorage.getItem('currentUser')).firstname;
+    return (localStorage.getItem('currentUser')) ? JSON.parse(localStorage.getItem('currentUser')).firstname : '';
   }
 
   login(username: string, password: string): Observable<boolean> {
