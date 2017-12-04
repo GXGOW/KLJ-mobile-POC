@@ -1,8 +1,14 @@
 let express = require('express');
 let router = express.Router();
+const jwt = require('express-jwt');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 let passport = require('passport');
+
+let auth = jwt({
+  secret: process.env.NUCLEAR_LAUNCH_CODES,
+  userProperty: 'payload'
+});
 
 router.post('/register', function (req, res, next) {
   if (!req.body.username || !req.body.password) {
@@ -32,11 +38,25 @@ router.post('/login', function (req, res, next) {
         firstname: user.firstname,
         role: user.role
       });
-      return res.json('Yes hoera');
     } else {
       return res.status(401).json(info);
     }
   })(req, res, next);
+});
+
+router.get('/getByUsername', auth, function (req, res, next) {
+  User.findOne({
+      username: req.get('username')
+    })
+    .select({
+      '_id': 0,
+      'hash': 0,
+      'salt': 0
+    })
+    .exec(function (err, user) {
+      if (err) res.send(err);
+      res.send(user);
+    });
 });
 
 module.exports = router;
