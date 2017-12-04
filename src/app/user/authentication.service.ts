@@ -19,6 +19,10 @@ export class AuthenticationService {
     return this._user$;
   }
 
+  get username(): string {
+    return JSON.parse(localStorage.getItem('currentUser')).username;
+  }
+
   get token(): string {
     return JSON.parse(localStorage.getItem('currentUser')).token;
   }
