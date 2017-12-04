@@ -26,10 +26,11 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/activities', function (req, res, next) {
-  Activity.find({}).exec(function (err, activities) {
-    if (err) res.send(err);
-    res.json(activities);
-  });
+  Activity.find({})
+    .sort('date').exec(function (err, activities) {
+      if (err) res.send(err);
+      res.json(activities);
+    });
 });
 
 router.get('/get_image', function (req, res, next) {
