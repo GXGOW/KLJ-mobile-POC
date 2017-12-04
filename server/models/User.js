@@ -22,12 +22,7 @@ var UserSchema = new Schema({
   },
   firstname: String,
   lastname: String,
-  address: {
-    street: String,
-    number: String,
-    postalCode: Number,
-    city: String
-  },
+  address: String,
   phoneNumber: {
     type: String
   },
