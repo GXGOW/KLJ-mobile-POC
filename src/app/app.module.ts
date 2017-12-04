@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,11 +13,9 @@ import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { Routes, RouterModule } from '@angular/router';
 
-const routes = [
-  { path: 'list', component: ActivityListComponent },
-  { path: 'add', component: AddActivityComponent }
-];
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +23,8 @@ const routes = [
     ActivityListComponent,
     AddActivityComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,8 @@ const routes = [
     MatDialogModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   entryComponents: [
     AddActivityComponent,

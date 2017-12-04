@@ -6,7 +6,7 @@
         <a class="dropdown-button" data-activates='dropdown1'>Welkom, {{firstname}}</a>
         <ul id="dropdown1" class="dropdown-content">
           <li>
-            <a>Profiel</a>
+            <a routerLinkActive='active' routerLink="profile">Profiel</a>
           </li>
           <li class="divider"></li>
           <li>
@@ -26,7 +26,7 @@
   </div>
 </nav>
 <div class="container ">
-  <app-activity-list></app-activity-list>
+  <router-outlet></router-outlet>
   <div *ngIf='role === "leader"' class="row ">
     <div class="fixed-action-btn ">
       <a (click)="addActivityDialog() " class="btn-floating btn-large waves-effect waves-light red ">
