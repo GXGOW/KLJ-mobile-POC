@@ -60,7 +60,10 @@ exports.dummies = function () {
     firstname: 'Nicolas',
     lastname: 'Loots',
     username: 'nicolas.loots@outlook.be',
-    role: 'leader'
+    role: 'leader',
+    address: 'Koekoekstraat 64, Melle',
+    phoneNumber: '0474123456',
+    birthday: new Date('1997-02-14T01:00:00')
   });
   user1.setPassword('HermanVanVeen');
   users.push(user1);
@@ -69,7 +72,10 @@ exports.dummies = function () {
     firstname: 'Jef',
     lastname: 'Malfliet',
     username: 'jef.malfliet@kljhamme.be',
-    role: 'member'
+    role: 'member',
+    address: 'Kleinedreef 12, Melsele',
+    phoneNumber: '0474123456',
+    birthday: new Date('1999-12-27T01:00:00')
   });
   user2.setPassword('HetKipMooi');
   users.push(user2);
