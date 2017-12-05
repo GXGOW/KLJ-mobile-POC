@@ -1,4 +1,4 @@
-import { AuthenticationService } from '../user/authentication.service';
+import { AuthenticationService } from '../../user/authentication.service';
 import { ActivityDataService } from './../activity-data.service';
 import { Activity } from '../activity.model';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';

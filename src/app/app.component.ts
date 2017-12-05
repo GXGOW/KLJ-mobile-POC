@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { AddActivityComponent } from './add-activity/add-activity.component';
+import { AddActivityComponent } from './act/add-activity/add-activity.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { AuthenticationService } from './user/authentication.service';

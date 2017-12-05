@@ -3,7 +3,7 @@ import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Activity } from './activity.model';
 import { Observable } from 'rxjs/Rx';
-import { AuthenticationService } from './user/authentication.service';
+import { AuthenticationService } from '../user/authentication.service';
 @Injectable()
 export class ActivityDataService {
   private _appUrl = window.location.origin + '/api';
