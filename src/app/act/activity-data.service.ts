@@ -12,6 +12,14 @@ export class ActivityDataService {
 
   }
 
+  joinActivity(activityId): Observable<Boolean> {
+    return this.http.post(`${this._appUrl}/join_activity`, {
+      activityId: activityId,
+      username: this.auth.username
+    }, { headers: new Headers({ Authorization: `Bearer ${this.auth.token}` }) })
+      .map(response => response.json()).map(item => !!item);
+  }
+
   get activities(): Observable<Activity[]> {
     return this.http.get(`${this._appUrl}/activities`)
       .map(response => response.json().map(item => Activity.fromJSON(item)));
@@ -19,7 +27,6 @@ export class ActivityDataService {
 
   addNewActivity(activity): Observable<Activity> {
     activity.organisedBy = this.auth.username;
-    console.log(activity);
     return this.http.post(`${this._appUrl}/add_activity`, activity,
       { headers: new Headers({ Authorization: `Bearer ${this.auth.token}` }) })
       .map(res => res.json()).map(item => Activity.fromJSON(item));

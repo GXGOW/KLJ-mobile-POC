@@ -67,4 +67,32 @@ router.post('/add_activity', auth, function (req, res, next) {
   })
 });
 
+router.post('/join_activity', auth, function (req, res, next) {
+  prom1 = new Promise(function (resolve, reject) {
+    User.findOne({
+        username: req.body.username
+      })
+      .exec(function (err, user) {
+        if (err) {
+          reject(new Error(err));
+        } else resolve(user);
+      });
+  });
+  prom2 = new Promise(function (resolve, reject) {
+    Activity.findById(req.body.activityId, function (err, activity) {
+      if (err) reject(new Error(err));
+      else resolve(activity);
+    })
+  });
+  Promise.all([prom1, prom2]).then(values => {
+    values[1].attendees.push(values[0]);
+    values[1].save(function (err, act) {
+      if (err) reject(new Error(err));
+      else res.send(true);
+    })
+  }).catch(function (err) {
+    res.send(err.message);
+  });
+});
+
 module.exports = router;
