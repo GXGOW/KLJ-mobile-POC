@@ -29,7 +29,7 @@
   <router-outlet></router-outlet>
   <div *ngIf='role === "leader"' class="row ">
     <div class="fixed-action-btn ">
-      <a (click)="addActivityDialog() " class="btn-floating btn-large waves-effect waves-light red ">
+      <a id="addBtn" (click)="addActivityDialog() " class="btn-floating btn-large waves-effect waves-light red scale-transition scale-out">
         <i class="material-icons ">add</i>
       </a>
     </div>

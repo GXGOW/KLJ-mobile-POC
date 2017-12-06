@@ -27,8 +27,9 @@ export class AppComponent implements OnInit {
       belowOrigin: false,
       alignment: 'left',
       stopPropagation: false
-    }
-    );
+    });
+    window.setTimeout(function () { $('#addBtn').removeClass('scale-out'); }, 1000);
+
   }
 
   get currentUser(): Observable<[string]> {
