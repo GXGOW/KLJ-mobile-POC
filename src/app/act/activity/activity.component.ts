@@ -1,3 +1,5 @@
+import { ActivityDetailComponent } from '../activity-detail/activity-detail.component';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { Component, OnInit, Input } from '@angular/core';
 import { Activity } from '../activity.model';
 @Component({
@@ -7,11 +9,20 @@ import { Activity } from '../activity.model';
 })
 export class ActivityComponent implements OnInit {
   @Input() public activity: Activity;
-  constructor() {
+  constructor(public dialog: MatDialog) {
 
   }
 
   ngOnInit() {
+  }
+
+  showDetailDialog() {
+    const dialog = this.dialog.open(ActivityDetailComponent, {
+      width: '700px',
+      data: {
+        data: this.activity
+      }
+    });
   }
 
 }

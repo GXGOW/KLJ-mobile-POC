@@ -47,13 +47,34 @@ export class Activity {
         return this._date;
     }
 
+    get dateLong(): string {
+        if (this._date) {
+            const tempdate = new Date(this._date);
+            const day = tempdate.toLocaleString('nl-BE', { weekday: 'long' });
+            const dayNr = tempdate.getDate();
+            const month = tempdate.toLocaleDateString('nl-BE', { month: 'long' });
+            const year = tempdate.getFullYear();
+            return day + ' ' + dayNr + ' ' + month + ' ' + year;
+        }
+        return '';
+    }
+
     get dateShort(): string {
-        const tempdate = new Date(this._date);
-        if (tempdate) {
+        if (this._date) {
+            const tempdate = new Date(this._date);
             const day = tempdate.getDate();
             const month = tempdate.toLocaleString('nl-BE', { month: 'long' }).substr(0, 3);
             return day + ' ' + month;
-        } else { return ''; }
+        }
+        return '';
+    }
+
+    get time(): string {
+        if (this._date) {
+            const tempdate = new Date(this._date);
+            return tempdate.getHours() + ':' + tempdate.getMinutes();
+        }
+        return '';
     }
 
     set date(date: Date) {

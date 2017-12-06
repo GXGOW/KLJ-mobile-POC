@@ -41,7 +41,8 @@ import { ActivityDetailComponent } from './act/activity-detail/activity-detail.c
   entryComponents: [
     AddActivityComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ActivityDetailComponent
   ],
   bootstrap: [AppComponent]
 })
