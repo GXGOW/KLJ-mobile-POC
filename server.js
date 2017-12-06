@@ -4,7 +4,8 @@ const path = require('path');
 const http = require('http');
 const passport = require('passport');
 const app = express();
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const env = require('env2')('.env');
 mongoose.connect(process.env.DONALD_TRUMP_TWEETS, {
   useMongoClient: true
 });
