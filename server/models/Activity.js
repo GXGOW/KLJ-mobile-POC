@@ -10,10 +10,10 @@ var ActivitySchema = new Schema({
   description: {
     type: String
   },
-  organisedBy: [{
+  organisedBy: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }],
+  },
   date: {
     type: Date,
     default: Date.now

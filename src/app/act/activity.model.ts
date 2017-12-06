@@ -2,7 +2,7 @@ export class Activity {
     private _id: string;
     private _title: string;
     private _description: string;
-    private _organisedBy: [string];
+    private _organisedBy: string;
     private _date: Date;
     private _location: string;
     private _attendees: [string];
@@ -14,7 +14,7 @@ export class Activity {
         return act;
     }
 
-    constructor(title: string, description: string, date?: Date, location?: string, image?: string | any, organisedBy?: [string]) {
+    constructor(title: string, description: string, date?: Date, location?: string, image?: string | any, organisedBy?: string) {
         this._title = title;
         this._description = description;
         this._date = date;
@@ -60,7 +60,7 @@ export class Activity {
         this._date = date;
     }
 
-    get organisedBy(): [string] {
+    get organisedBy(): string {
         return this._organisedBy;
     }
 
