@@ -40,10 +40,30 @@ router.get('/get_image', function (req, res, next) {
 });
 
 router.post('/add_activity', auth, function (req, res, next) {
-  let new_activity = new Activity(req.body);
-  new_activity.save(function (err, act) {
-    if (err) res.send(err);
-    res.send(act);
+  let new_activity = new Activity({
+    title: req.body.title,
+    description: req.body.description,
+    location: req.body.location,
+    date: req.body.date
+  });
+  const prom = new Promise(function (resolve, reject) {
+    User.findOne({
+        username: req.body.organisedBy
+      })
+      .exec(function (err, user) {
+        if (err) {
+          reject(new Error(err));
+        } else resolve(user);
+      });
+  });
+  prom.then(function (user) {
+    new_activity.organisedBy = user;
+    new_activity.save(function (err, act) {
+      if (err) reject(new Error(err));
+      else res.send('success');
+    });
+  }).catch(function (err) {
+    res.send(err.message);
   })
 });
 

@@ -18,6 +18,8 @@ export class ActivityDataService {
   }
 
   addNewActivity(activity): Observable<Activity> {
+    activity.organisedBy = this.auth.username;
+    console.log(activity);
     return this.http.post(`${this._appUrl}/add_activity`, activity,
       { headers: new Headers({ Authorization: `Bearer ${this.auth.token}` }) })
       .map(res => res.json()).map(item => Activity.fromJSON(item));
