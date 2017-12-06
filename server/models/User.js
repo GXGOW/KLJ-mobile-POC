@@ -7,24 +7,22 @@ var datejs = require('date.js');
 
 
 var UserSchema = new Schema({
-  email: {
+  username: {
     type: String,
     lowercase: true,
     unique: true,
-    required: true,
+    required: true
   },
   hash: String,
   salt: String,
   role: {
     type: String,
-    enum: ['leider', 'lid', 'admin']
+    enum: ['leader', 'member'],
+    default: 'member'
   },
-  address: {
-    street: String,
-    number: String,
-    postalCode: Number,
-    city: String
-  },
+  firstname: String,
+  lastname: String,
+  address: String,
   phoneNumber: {
     type: String
   },
@@ -32,6 +30,8 @@ var UserSchema = new Schema({
     type: Date,
     required: true
   }
+}, {
+  timestamps: true
 });
 
 UserSchema.methods.setPassword = function (password) {

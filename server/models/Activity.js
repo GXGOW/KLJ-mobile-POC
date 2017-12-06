@@ -10,10 +10,10 @@ var ActivitySchema = new Schema({
   description: {
     type: String
   },
-  organisedBy: [{
+  organisedBy: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }],
+  },
   date: {
     type: Date,
     default: Date.now
@@ -21,6 +21,10 @@ var ActivitySchema = new Schema({
   location: {
     type: String,
     default: 'KLJ lokaal'
+  },
+  image: {
+    data: Buffer,
+    fileType: String
   },
   attendees: [{
     type: Schema.Types.ObjectId,

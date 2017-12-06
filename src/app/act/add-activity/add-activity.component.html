@@ -1,0 +1,43 @@
+<a (click)="close()">
+  <i class="material-icons right">close</i>
+</a>
+<h1 mat-dialog-title>
+  Activiteit toevoegen</h1>
+<div class="row">
+  <form [formGroup]="activity" (ngSubmit)="onSubmit()" class="col s12 ">
+    <div class="row ">
+      <div class="input-field col s12 m6">
+        <input formControlName="title" id="title" type="text" class="validate">
+        <label for="title">Titel</label>
+      </div>
+      <div class="input-field col s6 m3">
+        <input formControlName="date" id="date" type="text" class="datepicker">
+        <label for="date">Datum</label>
+      </div>
+      <div class="input-field col s6 m3">
+        <input formControlName="time" id="time" type="text" class="timepicker">
+        <label for="time">Tijd</label>
+      </div>
+      <div class="input-field col s12">
+        <textarea formControlName="description" id="description" type="text" class="materialize-textarea"></textarea>
+        <label for="description">Beschrijving</label>
+      </div>
+      <div class="input-field col s12">
+        <input formControlName="location" id="location" type="text" class="validate">
+        <label for="location">Locatie</label>
+      </div>
+      <div class="input-field file-field col s12">
+        <div class="btn">
+          <span>Bladeren</span>
+          <input formControlName="image" type="file" id="image" (change)="onFileChange($event)">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload file" />
+        </div>
+      </div>
+    </div>
+    <mat-dialog-actions>
+      <button type="submit" class="waves-effect waves-light btn">Aanmaken</button>
+    </mat-dialog-actions>
+  </form>
+</div>

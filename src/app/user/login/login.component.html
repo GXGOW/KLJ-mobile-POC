@@ -1,0 +1,21 @@
+<a (click)="close()">
+  <i class="material-icons right">close</i>
+</a>
+<h1 mat-dialog-title>Login</h1>
+<div id="row">
+  <form [formGroup]='user' (ngSubmit)='onSubmit()'>
+    <mat-dialog-content>
+      <div class="input-field col s12">
+        <input formControlName="username" id="username" type="text" class="validate">
+        <label for="username">E-mail</label>
+      </div>
+      <div class="input-field col s12">
+        <input formControlName="password" id="password" type="password" class="validate">
+        <label for="password">Wachtwoord</label>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button type="submit" class="waves-effect waves-light btn">Login</button>
+    </mat-dialog-actions>
+  </form>
+</div>

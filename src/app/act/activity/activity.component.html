@@ -1,14 +1,17 @@
 <div class="col s12 m3">
   <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
+    <div class="card-image">
       <img class="activator" src="../../assets/placeholder.jpg" />
+      <span class="date btn-floating btn-large halfway-fab waves-effect waves-light blue">
+        {{activity.dateShort}}
+      </span>
     </div>
     <div class="card-content">
-      <span class="card-title">{{activity.title}}</span>
+      <span class="card-title activator">{{activity.title}}</span>
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">
-        {{activity.name}}
+        {{activity.title}}
         <i class="material-icons right">close</i>
       </span>
       <p>{{activity.description}}</p>
