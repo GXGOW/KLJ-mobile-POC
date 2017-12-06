@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
+mongoose.Promise = global.Promise;
+
 // var dummy = require('./server/data/Generate');
 // dummy.dummies();
 
