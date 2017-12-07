@@ -40,8 +40,8 @@ export class User {
 
     get roleLocale(): string {
         switch (this._role) {
-            case 'leader': return 'Leider'; break;
-            case 'member': return 'Lid'; break;
+            case 'leader': return 'Leider';
+            case 'member': return 'Lid';
         }
         return '';
     }
