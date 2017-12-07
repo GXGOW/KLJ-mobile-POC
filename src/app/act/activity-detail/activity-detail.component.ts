@@ -3,6 +3,7 @@ import { Activity } from '../activity.model';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { AuthenticationService } from '../../user/authentication.service';
+import { Observable } from 'rxjs/Rx';
 declare const jquery: any;
 declare const $: any;
 @Component({
@@ -25,6 +26,10 @@ export class ActivityDetailComponent implements OnInit {
         $('#attendBtn').addClass('green');
       }
     });
+  }
+
+  get authenticated(): Observable<[string]> {
+    return this._authenticationService._user$;
   }
 
   joinActivity() {
