@@ -7,6 +7,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { AuthenticationService } from './user/authentication.service';
 declare const jquery: any;
 declare const $: any;
+declare const Materialize: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,7 +30,14 @@ export class AppComponent implements OnInit {
       stopPropagation: false
     });
     window.setTimeout(function () { $('#addBtn').removeClass('scale-out'); }, 1000);
-
+    if (!sessionStorage.getItem('dialogShown')) {
+      (this.authService._user$.subscribe(item => {
+        if (item) {
+          Materialize.toast('Welkom terug, ' + this.authService.firstname + '!', 4000);
+          sessionStorage.setItem('dialogShown', JSON.stringify(true));
+        }
+      }));
+    }
   }
 
   get currentUser(): Observable<[string]> {
