@@ -1,7 +1,10 @@
 <div class="col s6 m3">
   <div class="card">
     <div class="card-image">
-      <img class="activator" src="../../assets/placeholder.png" />
+      <img *ngIf='(activity.image !== undefined) else defaultImage' class="activator" [src]="activity.image" />
+      <ng-template #defaultImage>
+        <img class="activator" src="../../assets/placeholder.png" />
+      </ng-template>
       <span class="date btn-floating btn-large halfway-fab waves-effect waves-light blue">
         {{activity.dateShort}}
       </span>
