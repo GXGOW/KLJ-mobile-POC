@@ -56,18 +56,13 @@ router.get('/activities_by_user', auth, function (req, res, next) {
   });
 });
 
-router.get('/get_image', function (req, res, next) {
-  Activity.findById('5a1b34970e83a31b58c797d1').exec(function (err, act) {
-    res.send(act.image.data.toString('base64'));
-  });
-});
-
 router.post('/add_activity', auth, function (req, res, next) {
   let new_activity = new Activity({
     title: req.body.title,
     description: req.body.description,
     location: req.body.location,
-    date: req.body.date
+    date: req.body.date,
+    image: req.body.image
   });
   const prom = new Promise(function (resolve, reject) {
     User.findOne({
