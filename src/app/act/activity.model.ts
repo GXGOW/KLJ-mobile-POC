@@ -13,7 +13,8 @@ export class Activity {
     private _image: string | any;
 
     static fromJSON(json): Activity {
-        const act = new Activity(json.title, json.description, json.date, json.location, json.image, json.organisedBy, json.attendees);
+        const act = new Activity(json.title, json.description, json.date, json.location,
+            json.image, json.organisedBy, json.attendees);
         act._id = json._id;
         return act;
     }
@@ -104,7 +105,10 @@ export class Activity {
     }
 
     get image(): string | any {
-        return this._image;
+        if (this._image !== undefined) {
+            return 'data:' + this._image.fileType + ';base64,' + this._image.data;
+        }
+        return undefined;
     }
 
     set image(image: string | any) {
