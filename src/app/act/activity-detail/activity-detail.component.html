@@ -24,6 +24,14 @@
         <th>Locatie</th>
         <td>{{activity.location}}</td>
       </tr>
+      <tr>
+        <th>Aanwezigen</th>
+        <td>
+          <ul *ngFor="let item of activity.attendees">
+            <li>{{item.firstname}} {{item.lastname}}</li>
+          </ul>
+        </td>
+      </tr>
     </table>
   </mat-dialog-content>
   <mat-dialog-actions>
