@@ -23,7 +23,7 @@ var ActivitySchema = new Schema({
     default: 'KLJ lokaal'
   },
   image: {
-    data: Buffer,
+    data: String,
     fileType: String
   },
   attendees: [{
