@@ -60,12 +60,16 @@ export class AuthenticationService {
     }
   }
 
-  register(username: string, password: string): Observable<boolean> {
+  register(username: string, password: string, firstname: string, lastname: string,
+    address: string, phoneNumber: string, birthday: Number): Observable<boolean> {
     return this.http.post(`${this._url}/register`,
-      { username: username, password: password })
+      {
+        username: username, password: password, firstname: firstname, lastname: lastname,
+        address: address, phoneNumber: phoneNumber, birthday: birthday
+      })
       .map(res => res.json()).map(res => {
         const token = res.token;
-        const firstname = res.firstname;
+        firstname = res.firstname;
         const role = res.role;
         if (token) {
           localStorage.setItem('currentUser',

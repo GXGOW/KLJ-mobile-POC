@@ -14,7 +14,7 @@ function comparePasswords(control: AbstractControl): { [key: string]: any } {
 
 function passwordValidator(length: number): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } => {
-    return control.value.length < length ? { 'passwordTooShort': { requiredLength: length, actualLength: control.value.length } } : null;
+    return control.value.length < length ? { 'passwordTooShort': true, reqLength: length } : null;
   };
 }
 
@@ -36,13 +36,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     // TODO SSV username
     this.user = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(4)]],
+      username: ['', [Validators.required]],
       passwordGroup: this.fb.group({
         password: ['', [Validators.required, passwordValidator(12)]],
         confirmPassword: ['', Validators.required]
       }, { validator: comparePasswords }),
-      firstname: [''],
-      lastname: [''],
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
       street: ['', Validators.required],
       number: ['', Validators.required],
       postalCode: ['', Validators.required],
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
     // Initialize materialize datepicker
     $('.datepicker').pickadate({
       selectMonths: true,
-      selectYears: 5,
+      selectYears: 50,
       today: 'Vandaag',
       clear: 'Verwijder',
       close: 'Ok',
@@ -70,7 +70,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    return 0;
+    const address = this.user.value.street + ' ' + this.user.value.number + ', ' + this.user.value.postalCode + ' ' + this.user.value.city;
+    const tempdate = moment.utc(this.user.value.birthday, 'DD/MM/YYYY').toDate().getTime();
+    this.authService.register(this.user.value.username, this.passwordControl.value, this.user.value.firstname,
+      this.user.value.lastname, address, this.user.value.phoneNumber, tempdate).subscribe(item => {
+        if (item) {
+          this.dialogRef.close();
+          location.reload();
+        }
+      });
   }
 
   close(): void {

@@ -1,53 +1,98 @@
 <a (click)="close()">
   <i class="material-icons right">close</i>
 </a>
+<h1 mat-dialog-title>Registreer</h1>
 <div class="row">
   <form [formGroup]='user' (ngSubmit)='onSubmit()'>
-    <div class="input-field col s12">
-      <input formControlName="username" id="username" type="text" class="validate">
-      <label for="username">E-mail</label>
-    </div>
-    <div formGroupName='passwordGroup'>
-      <div class="input-field col s6">
-        <input formControlName="password" id="password" type="password" class="validate">
-        <label for="password">Wachtwoord</label>
+    <mat-dialog-content>
+      <div class="input-field col s12">
+        <input formControlName="username" id="username" type="text">
+        <label for="username">E-mail
+          <span class='data-error errMsg' *ngIf='user.get("username").errors && user.get("username").touched'>Verplicht veld</span>
+        </label>
+      </div>
+      <div class="multipleForms" formGroupName='passwordGroup'>
+        <div class="input-field col s6">
+          <input formControlName="password" id="password" type="password">
+          <label for="password">Wachtwoord
+            <span class="errMsg" *ngIf=' passwordControl.errors?.passwordTooShort && passwordControl.touched'>
+              Minimum {{passwordControl.errors?.reqLength}} karakters
+            </span>
+          </label>
+        </div>
+        <div class="input-field col s6">
+          <input formControlName="confirmPassword" id="confirmPassword" type="password">
+          <label for="confirmPassword ">Herhaal Wachtwoord
+            <span class="errMsg" *ngIf=' user.get("passwordGroup").errors?.passwordsDiffer && user.get("passwordGroup").get("confirmPassword").touched &&
+                                    user.get("passwordGroup").get("password").touched'>
+              Wachtwoorden komen niet overeen</span>
+          </label>
+        </div>
       </div>
       <div class="input-field col s6">
-        <input formControlName="confirmPassword" id="confirmPassword" type="password" class="validate">
-        <label for="confirmPassword ">Herhaal Wachtwoord</label>
+        <input formControlName="firstname" id="firstname" type="text">
+        <label for="firstname">Voornaam
+          <span class='errMsg' *ngIf='user.get("firstname").errors && user.get("firstname").touched'>
+            Verplicht veld
+          </span>
+        </label>
       </div>
-    </div>
-    <div class="input-field col s6">
-      <input formControlName="firstname" id="firstname" type="text" class="validate">
-      <label for="firstname">Voornaam</label>
-    </div>
-    <div class="input-field col s6">
-      <input formControlName="lastname" id="lastname" type="text" class="validate">
-      <label for="lastname">Familienaam</label>
-    </div>
-    <div class="input-field col s6">
-      <input formControlName="street" id="street" type="text" class="validate">
-      <label for="street">Straat</label>
-    </div>
-    <div class="input-field col s2">
-      <input formControlName="number" id="number" type="text" class="validate">
-      <label for="number">Nr.</label>
-    </div>
-    <div class="input-field col s4">
-      <input formControlName="postalCode" id="postalCode" type="text" class="validate">
-      <label for="postalCode">Postcode</label>
-    </div>
-    <div class="input-field col s12">
-      <input formControlName="city" id="city" type="text" class="validate">
-      <label for="city">Gemeente/Stad</label>
-    </div>
-    <div class="input-field col s8">
-      <input formControlName="phoneNumber" id="phoneNumber" type="text" class="validate">
-      <label for="phoneNumber">Telefoon/Gsm</label>
-    </div>
-    <div class="input-field col s4 ">
-      <input formControlName="birthday" id="birthday" type="text" class="datepicker">
-      <label for="birthday">Geboortedatum</label>
-    </div>
+      <div class="input-field col s6">
+        <input formControlName="lastname" id="lastname" type="text">
+        <label for="lastname">Familienaam
+          <span class='errMsg' *ngIf='user.get("lastname").errors && user.get("lastname").touched'>
+            Verplicht veld
+          </span>
+        </label>
+      </div>
+      <div class="input-field col s6">
+        <input formControlName="street" id="street" type="text">
+        <label for="street">Straat
+          <span class='errMsg' *ngIf='user.get("street").errors && user.get("street").touched'>
+            Verplicht veld
+          </span>
+        </label>
+      </div>
+      <div class="input-field col s2">
+        <input formControlName="number" id="number" type="text">
+        <label for="number">Nr.</label>
+      </div>
+      <div class="input-field col s4">
+        <input formControlName="postalCode" id="postalCode" type="text">
+        <label for="postalCode">Postcode
+          <span class='errMsg' *ngIf='user.get("postalCode").errors && user.get("postalCode").touched'>
+            Verplicht veld
+          </span>
+        </label>
+      </div>
+      <div class="input-field col s12">
+        <input formControlName="city" id="city" type="text">
+        <label for="city">Gemeente/Stad
+          <span class='errMsg' *ngIf='user.get("city").errors && user.get("city").touched'>
+            Verplicht veld
+          </span>
+        </label>
+      </div>
+      <div class="input-field col s8">
+        <input formControlName="phoneNumber" id="phoneNumber" type="text">
+        <label for="phoneNumber">Telefoon/Gsm
+          <span class='errMsg' *ngIf='user.get("phoneNumber").errors && user.get("phoneNumber").touched'>
+            Verplicht veld
+          </span>
+        </label>
+
+      </div>
+      <div class="input-field col s4 ">
+        <input formControlName="birthday" id="birthday" type="text" class="datepicker">
+        <label for="birthday">Geboortedatum
+          <span class='errMsg' *ngIf='user.get("birthday").errors && user.get("birthday").touched'>
+            Verplicht veld
+          </span>
+        </label>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button type="submit" [disabled]='!user.valid' class="waves-effect waves-light btn">Registreer</button>
+    </mat-dialog-actions>
   </form>
 </div>

@@ -16,11 +16,23 @@ router.post('/register', function (req, res, next) {
       message: 'Gelieve alle verplichte velden in te vullen!'
     });
   }
-  var new_user = new User();
+  const new_user = new User({
+    username: req.body.username,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    address: req.body.address,
+    phoneNumber: req.body.phoneNumber,
+    birthday: new Date(req.body.birthday)
+  });
   new_user.username = req.body.username;
   new_user.setPassword(req.body.password);
   new_user.save(function (err) {
-    if (err) return next(err);
+    if (err) console.log(err);
+    return res.json({
+      token: new_user.generateJWT(),
+      firstname: new_user.firstname,
+      role: new_user.role
+    })
   })
 });
 
