@@ -1,11 +1,48 @@
 <div id="row">
-  <ul>
-    <li>E-mailadres: {{user?.username}}</li>
-    <li>Voornaam: {{user?.firstname}}</li>
-    <li>Familienaam: {{user?.lastname}}</li>
-    <li>Type: {{user?.role}}</li>
-    <li>Adres: {{user?.address}}</li>
-    <li>Telefoonnummer: {{user?.phoneNumber}}</li>
-    <li>birthday: {{user?.birthday}}</li>
-  </ul>
+  <h1>
+    Profiel
+  </h1>
+  <table class="striped">
+    <tr>
+      <th>E-mailadres</th>
+      <td>{{user?.username}}</td>
+    </tr>
+    <tr>
+      <th>Voornaam</th>
+      <td>{{user?.lastname}}</td>
+    </tr>
+    <tr>
+      <th>Familienaam</th>
+      <td>{{user?.lastname}}</td>
+    </tr>
+    <tr>
+      <th>Gebruikerstype</th>
+      <td>{{user?.roleLocale}}</td>
+    </tr>
+    <tr>
+      <th>Adres</th>
+      <td>{{user?.address}}</td>
+    </tr>
+    <tr>
+      <th>Telefoonnummer</th>
+      <td>{{user?.phoneNumber}}</td>
+    </tr>
+    <tr>
+      <th>Geboortedatum</th>
+      <td>{{user?.birthday}}</td>
+    </tr>
+  </table>
+  <h1>Overzicht komende activiteiten</h1>
+  <table class="striped">
+    <tr>
+      <th>Naam</th>
+      <th>Datum</th>
+      <th>Tijd</th>
+    </tr>
+    <tr *ngFor="let item of activities ">
+      <td>{{item.title}}</td>
+      <td>{{item.dateLong}}</td>
+      <td>{{item.time}}</td>
+    </tr>
+  </table>
 </div>

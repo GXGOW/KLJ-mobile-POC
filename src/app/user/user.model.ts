@@ -38,6 +38,14 @@ export class User {
         return this._role;
     }
 
+    get roleLocale(): string {
+        switch (this._role) {
+            case 'leader': return 'Leider'; break;
+            case 'member': return 'Lid'; break;
+        }
+        return '';
+    }
+
     get address(): string {
         return this._address;
     }

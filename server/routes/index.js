@@ -35,6 +35,27 @@ router.get('/activities', function (req, res, next) {
     });
 });
 
+router.get('/activities_by_user', auth, function (req, res, next) {
+  const prom = new Promise(function (resolve, reject) {
+    User.findOne({
+      username: req.get('username')
+    }).exec(function (err, user) {
+      if (err) reject(new Error(err))
+      else resolve(user)
+    });
+  });
+  prom.then(function (user) {
+    Activity.find({
+      attendees: user._id
+    }).exec(function (err, activities) {
+      if (err) console.log(err);
+      res.send(activities);
+    })
+  }).catch(function (err) {
+    res.send(err.message);
+  });
+});
+
 router.get('/get_image', function (req, res, next) {
   Activity.findById('5a1b34970e83a31b58c797d1').exec(function (err, act) {
     res.send(act.image.data.toString('base64'));
