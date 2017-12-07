@@ -14,8 +14,17 @@ declare const $: any;
 export class ActivityDetailComponent implements OnInit {
   public activity: Activity;
   constructor( @Inject(MAT_DIALOG_DATA) public input: any, private dialogRef: MatDialogRef<ActivityDetailComponent>,
-    private _activityDataService: ActivityDataService) {
+    private _activityDataService: ActivityDataService, private _authenticationService: AuthenticationService) {
     this.activity = input.data;
+  }
+
+  ngOnInit() {
+    this.activity.attendees.forEach(element => {
+      if (element.username === this._authenticationService.username) {
+        $('#attendBtn').removeClass('red');
+        $('#attendBtn').addClass('green');
+      }
+    });
   }
 
   joinActivity() {
@@ -28,9 +37,6 @@ export class ActivityDetailComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
-  }
-
-  ngOnInit() {
   }
 
 }

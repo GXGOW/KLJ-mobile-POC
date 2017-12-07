@@ -27,6 +27,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/activities', function (req, res, next) {
   Activity.find({})
+    .lean()
+    .populate('attendees', '-_id username firstname lastname')
     .sort('date').exec(function (err, activities) {
       if (err) res.send(err);
       res.json(activities);

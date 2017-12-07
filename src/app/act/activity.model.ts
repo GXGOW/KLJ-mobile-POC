@@ -5,21 +5,27 @@ export class Activity {
     private _organisedBy: string;
     private _date: Date;
     private _location: string;
-    private _attendees: [string];
+    private _attendees: [{
+        username: string,
+        firstname: string,
+        lastname: string
+    }];
     private _image: string | any;
 
     static fromJSON(json): Activity {
-        const act = new Activity(json.title, json.description, json.date, json.location, json.image, json.organisedBy);
+        const act = new Activity(json.title, json.description, json.date, json.location, json.image, json.organisedBy, json.attendees);
         act._id = json._id;
         return act;
     }
 
-    constructor(title: string, description: string, date?: Date, location?: string, image?: string | any, organisedBy?: string) {
+    constructor(title: string, description: string, date?: Date, location?: string, image?: string | any, organisedBy?: string,
+        attendees?: any) {
         this._title = title;
         this._description = description;
         this._date = date;
         this._organisedBy = organisedBy;
         this._location = location;
+        this._attendees = attendees;
         this._image = image;
     }
 
@@ -103,6 +109,14 @@ export class Activity {
 
     set image(image: string | any) {
         this._image = image;
+    }
+
+    get attendees(): [{ username: string, firstname: string, lastname: string }] {
+        return this._attendees;
+    }
+
+    set attendees(attendees: [{ username: string, firstname: string, lastname: string }]) {
+        this._attendees = attendees;
     }
 
     toJSON() {
