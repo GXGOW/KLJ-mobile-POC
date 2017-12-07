@@ -85,13 +85,17 @@ router.post('/join_activity', auth, function (req, res, next) {
     })
   });
   Promise.all([prom1, prom2]).then(values => {
-    values[1].attendees.push(values[0]);
+    let bool = false;
+    if (values[1].attendees.indexOf(values[0]._id) === -1) {
+      values[1].attendees.push(values[0]);
+      bool = true;
+    } else values[1].attendees.splice(values[1].attendees.indexOf([values[0]._id]));
     values[1].save(function (err, act) {
       if (err) reject(new Error(err));
-      else res.send(true);
-    })
+      else res.send(bool);
+    });
   }).catch(function (err) {
-    res.send(err.message);
+    console.log(err.message);
   });
 });
 
