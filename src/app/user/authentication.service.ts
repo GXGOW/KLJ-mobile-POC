@@ -20,11 +20,11 @@ export class AuthenticationService {
   }
 
   get username(): string {
-    return JSON.parse(localStorage.getItem('currentUser')).username;
+    return (localStorage.getItem('currentUser')) ? JSON.parse(localStorage.getItem('currentUser')).username : '';
   }
 
   get token(): string {
-    return JSON.parse(localStorage.getItem('currentUser')).token;
+    return (localStorage.getItem('currentUser')) ? JSON.parse(localStorage.getItem('currentUser')).token : '';
   }
 
   get role(): string {
