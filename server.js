@@ -15,9 +15,12 @@ require('./server/config/passport');
 const index = require('./server/routes/index');
 const users = require('./server/routes/users');
 // Parsers
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: false,
+  limit: '50mb'
 }));
 
 mongoose.Promise = global.Promise;
