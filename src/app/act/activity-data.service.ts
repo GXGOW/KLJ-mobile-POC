@@ -34,11 +34,11 @@ export class ActivityDataService {
       .map(response => response.json().map(item => Activity.fromJSON(item)));
   }
 
-  addNewActivity(activity): Observable<Activity> {
+  addNewActivity(activity): Observable<Boolean> {
     activity.organisedBy = this.auth.username;
     return this.http.post(`${this._appUrl}/add_activity`, activity,
       { headers: new Headers({ Authorization: `Bearer ${this.auth.token}` }) })
-      .map(res => res.json()).map(item => Activity.fromJSON(item));
+      .map(res => res.json());
   }
 
 
