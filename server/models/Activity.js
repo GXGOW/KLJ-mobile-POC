@@ -17,7 +17,7 @@ var ActivitySchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now
+    default: new Date(new Date().setDate(new Date().getDate()+1))
   },
   location: {
     type: String,
