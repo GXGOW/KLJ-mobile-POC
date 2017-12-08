@@ -114,7 +114,14 @@ router.post('/join_activity', auth, function (req, res, next) {
       else res.send(bool);
     });
   }).catch(function (err) {
-    console.log(err.message);
+    res.send(err.message);
+  });
+});
+
+router.delete('/remove_activity', auth, function (req, res, next) {
+  Activity.findByIdAndRemove(req.get('activityId'), function (err) {
+    if (err) res.send(false);
+    else res.send(true);
   });
 });
 
