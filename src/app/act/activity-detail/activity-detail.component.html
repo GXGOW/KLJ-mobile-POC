@@ -1,3 +1,41 @@
-<p>
-  activity-detail works!
-</p>
+<div id="row">
+  <nav class="nav-wrapper blue lighten">
+    <h1 mat-dialog-title>{{activity.title}}</h1>
+  </nav>
+  <mat-dialog-content>
+    <table class="striped">
+      <tr>
+        <th>Omschrijving</th>
+        <td>{{activity.description}}</td>
+      </tr>
+      <tr>
+        <th>Datum</th>
+        <td>{{activity.dateLong}}</td>
+      </tr>
+      <tr>
+        <th>Tijd</th>
+        <td>{{activity.time}}</td>
+      </tr>
+      <tr>
+        <th>Gegeven door</th>
+        <td>{{activity.organisedBy?.firstname}} {{activity.organisedBy?.lastname}}</td>
+      </tr>
+      <tr>
+        <th>Locatie</th>
+        <td>{{activity.location}}</td>
+      </tr>
+      <tr>
+        <th>Aanwezigen</th>
+        <td>
+          <ul *ngFor="let item of activity.attendees">
+            <li>{{item.firstname}} {{item.lastname}}</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <a *ngIf='(authenticated | async)' id="attendBtn" (click)="joinActivity()" class="waves-effect waves-light btn red">Aanwezig</a>
+    <a (click)="close()" class="waves-effect waves-light btn red">Sluiten</a>
+  </mat-dialog-actions>
+</div>

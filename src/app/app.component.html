@@ -1,6 +1,6 @@
 <nav class="blue lighten-1">
   <div class="nav-wrapper container">
-    <a href="#" class="brand-logo">KLJ Mobile</a>
+    <a routerLinkActive='active' routerLink='overview' class="brand-logo left">KLJ Mobile</a>
     <ul id="nav-mobile" class="right">
       <li *ngIf='(currentUser | async) else authPart'>
         <a class="dropdown-button" data-activates='dropdown1'>Welkom, {{firstname}}</a>
@@ -10,7 +10,7 @@
           </li>
           <li class="divider"></li>
           <li>
-            <a (click)="logout()">Log uit</a>
+            <a (click)='logoutDialog()'>Log uit</a>
           </li>
         </ul>
       </li>

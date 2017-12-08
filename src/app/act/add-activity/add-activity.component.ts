@@ -11,6 +11,7 @@ import { MatDialog, MatDialogRef, MatDialogContent, MatDialogTitle } from '@angu
 import * as moment from 'moment';
 declare const jquery: any;
 declare const $: any;
+declare const Materialize: any;
 @Component({
   selector: 'app-add-activity',
   templateUrl: './add-activity.component.html',
@@ -29,7 +30,7 @@ export class AddActivityComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(10)]],
       date: ['', [Validators.required]],
       time: [''],
-      location: [''],
+      location: ['', [Validators.required]],
       image: null
     });
     // Parent variable
@@ -86,8 +87,14 @@ export class AddActivityComponent implements OnInit {
     }
     const act = new Activity(this.activity.value.title, this.activity.value.description,
       this.activity.value.date, this.activity.value.location, this.activity.value.image);
-    this._activityDataService.addNewActivity(act).subscribe();
-    this.dialogRef.close();
+    this._activityDataService.addNewActivity(act).subscribe(item => {
+      if (item) {
+        this.dialogRef.close();
+        location.reload();
+      } else {
+        Materialize.toast('Er ging iets fout. Probeer het later opnieuw.', 4000);
+      }
+    });
   }
 
   close(): void {

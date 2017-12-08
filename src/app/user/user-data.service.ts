@@ -10,12 +10,11 @@ export class UserDataService {
   constructor(private http: Http, private auth: AuthenticationService) { }
 
   get userDetails(): Observable<User> {
-    return this.http.get(`${this._appUrl}/getByUsername`,
-      {
-        headers: new Headers({
-          username: this.auth.username, Authorization: `Bearer ${this.auth.token}`
-        })
+    return this.http.get(`${this._appUrl}/getByUsername`, {
+      headers: new Headers({
+        username: this.auth.username, Authorization: `Bearer ${this.auth.token}`
       })
+    })
       .map(response => response.json()).map(item => User.fromJSON(item));
   }
 

@@ -20,11 +20,11 @@ export class AuthenticationService {
   }
 
   get username(): string {
-    return JSON.parse(localStorage.getItem('currentUser')).username;
+    return (localStorage.getItem('currentUser')) ? JSON.parse(localStorage.getItem('currentUser')).username : '';
   }
 
   get token(): string {
-    return JSON.parse(localStorage.getItem('currentUser')).token;
+    return (localStorage.getItem('currentUser')) ? JSON.parse(localStorage.getItem('currentUser')).token : '';
   }
 
   get role(): string {
@@ -60,12 +60,16 @@ export class AuthenticationService {
     }
   }
 
-  register(username: string, password: string): Observable<boolean> {
+  register(username: string, password: string, firstname: string, lastname: string,
+    address: string, phoneNumber: string, birthday: Number): Observable<boolean> {
     return this.http.post(`${this._url}/register`,
-      { username: username, password: password })
+      {
+        username: username, password: password, firstname: firstname, lastname: lastname,
+        address: address, phoneNumber: phoneNumber, birthday: birthday
+      })
       .map(res => res.json()).map(res => {
         const token = res.token;
-        const firstname = res.firstname;
+        firstname = res.firstname;
         const role = res.role;
         if (token) {
           localStorage.setItem('currentUser',
@@ -75,6 +79,13 @@ export class AuthenticationService {
         } else {
           return false;
         }
+      });
+  }
+
+  checkUserName(username: string): Observable<boolean> {
+    return this.http.post(`${this._url}/checkusername`, { username: username }).map(res => res.json())
+      .map(item => {
+        return item;
       });
   }
 

@@ -27,15 +27,33 @@ router.get('/', function (req, res, next) {
 
 router.get('/activities', function (req, res, next) {
   Activity.find({})
+    .lean()
+    .populate('attendees', '-_id username firstname lastname')
+    .populate('organisedBy', '-_id firstname lastname')
     .sort('date').exec(function (err, activities) {
       if (err) res.send(err);
       res.json(activities);
     });
 });
 
-router.get('/get_image', function (req, res, next) {
-  Activity.findById('5a1b34970e83a31b58c797d1').exec(function (err, act) {
-    res.send(act.image.data.toString('base64'));
+router.get('/activities_by_user', auth, function (req, res, next) {
+  const prom = new Promise(function (resolve, reject) {
+    User.findOne({
+      username: req.get('username')
+    }).exec(function (err, user) {
+      if (err) reject(new Error(err))
+      else resolve(user)
+    });
+  });
+  prom.then(function (user) {
+    Activity.find({
+      attendees: user._id
+    }).exec(function (err, activities) {
+      if (err) console.log(err);
+      res.send(activities);
+    })
+  }).catch(function (err) {
+    res.send(err.message);
   });
 });
 
@@ -44,7 +62,8 @@ router.post('/add_activity', auth, function (req, res, next) {
     title: req.body.title,
     description: req.body.description,
     location: req.body.location,
-    date: req.body.date
+    date: req.body.date,
+    image: req.body.image
   });
   const prom = new Promise(function (resolve, reject) {
     User.findOne({
@@ -60,11 +79,43 @@ router.post('/add_activity', auth, function (req, res, next) {
     new_activity.organisedBy = user;
     new_activity.save(function (err, act) {
       if (err) reject(new Error(err));
-      else res.send('success');
+      else res.send(true);
     });
   }).catch(function (err) {
-    res.send(err.message);
+    res.send(false);
   })
+});
+
+router.post('/join_activity', auth, function (req, res, next) {
+  prom1 = new Promise(function (resolve, reject) {
+    User.findOne({
+        username: req.body.username
+      })
+      .exec(function (err, user) {
+        if (err) {
+          reject(new Error(err));
+        } else resolve(user);
+      });
+  });
+  prom2 = new Promise(function (resolve, reject) {
+    Activity.findById(req.body.activityId, function (err, activity) {
+      if (err) reject(new Error(err));
+      else resolve(activity);
+    })
+  });
+  Promise.all([prom1, prom2]).then(values => {
+    let bool = false;
+    if (values[1].attendees.indexOf(values[0]._id) === -1) {
+      values[1].attendees.push(values[0]);
+      bool = true;
+    } else values[1].attendees.splice(values[1].attendees.indexOf([values[0]._id]));
+    values[1].save(function (err, act) {
+      if (err) reject(new Error(err));
+      else res.send(bool);
+    });
+  }).catch(function (err) {
+    console.log(err.message);
+  });
 });
 
 module.exports = router;

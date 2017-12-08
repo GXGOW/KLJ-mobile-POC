@@ -23,12 +23,13 @@ var ActivitySchema = new Schema({
     default: 'KLJ lokaal'
   },
   image: {
-    data: Buffer,
+    data: String,
     fileType: String
   },
   attendees: [{
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    default: []
   }]
 });
 

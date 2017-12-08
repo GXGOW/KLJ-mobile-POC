@@ -1,15 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-
+import { ActivityDataService } from '../activity-data.service';
+import { Activity } from '../activity.model';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { AuthenticationService } from '../../user/authentication.service';
+import { Observable } from 'rxjs/Rx';
+declare const jquery: any;
+declare const $: any;
 @Component({
   selector: 'app-activity-detail',
   templateUrl: './activity-detail.component.html',
-  styleUrls: ['./activity-detail.component.scss']
+  styleUrls: ['./activity-detail.component.scss'],
+  providers: [ActivityDataService, AuthenticationService]
 })
 export class ActivityDetailComponent implements OnInit {
-
-  constructor() { }
+  public activity: Activity;
+  constructor( @Inject(MAT_DIALOG_DATA) public input: any, private dialogRef: MatDialogRef<ActivityDetailComponent>,
+    private _activityDataService: ActivityDataService, private _authenticationService: AuthenticationService) {
+    this.activity = input.data;
+  }
 
   ngOnInit() {
+    this.activity.attendees.forEach(element => {
+      if (element.username === this._authenticationService.username) {
+        $('#attendBtn').removeClass('red');
+        $('#attendBtn').addClass('green');
+      }
+    });
+  }
+
+  get authenticated(): Observable<[string]> {
+    return this._authenticationService._user$;
+  }
+
+  joinActivity() {
+    $('#attendBtn').addClass('disabled');
+    this._activityDataService.joinActivity(this.activity.id).subscribe(item => {
+      $('#attendBtn').removeClass('disabled');
+      item ? $('#attendBtn').removeClass('red').addClass('green') : $('#attendBtn').removeClass('green').addClass('red');
+    });
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
 }

@@ -8,15 +8,27 @@
     <div class="row ">
       <div class="input-field col s12 m6">
         <input formControlName="title" id="title" type="text" class="validate">
-        <label for="title">Titel</label>
+        <label for="title">Titel
+          <span class='errMsg' *ngIf='activity.get("title").errors && activity.get("title").touched'>
+            Verplicht veld
+          </span>
+        </label>
       </div>
       <div class="input-field col s6 m3">
         <input formControlName="date" id="date" type="text" class="datepicker">
-        <label for="date">Datum</label>
+        <label for="date">Datum
+          <span class='errMsg' *ngIf='activity.get("date").errors && activity.get("date").touched'>
+            Verplicht veld
+          </span>
+        </label>
       </div>
       <div class="input-field col s6 m3">
         <input formControlName="time" id="time" type="text" class="timepicker">
-        <label for="time">Tijd</label>
+        <label for="time">Tijd
+          <span class='errMsg' *ngIf='activity.get("time").errors && activity.get("time").touched'>
+            Verplicht veld
+          </span>
+        </label>
       </div>
       <div class="input-field col s12">
         <textarea formControlName="description" id="description" type="text" class="materialize-textarea"></textarea>
@@ -24,7 +36,11 @@
       </div>
       <div class="input-field col s12">
         <input formControlName="location" id="location" type="text" class="validate">
-        <label for="location">Locatie</label>
+        <label for="location">Locatie
+          <span class='errMsg' *ngIf='activity.get("location").errors && activity.get("location").touched'>
+            Verplicht veld
+          </span>
+        </label>
       </div>
       <div class="input-field file-field col s12">
         <div class="btn">
@@ -37,7 +53,7 @@
       </div>
     </div>
     <mat-dialog-actions>
-      <button type="submit" class="waves-effect waves-light btn">Aanmaken</button>
+      <button type="submit" [disabled]='!activity.valid' class="waves-effect waves-light btn">Aanmaken</button>
     </mat-dialog-actions>
   </form>
 </div>

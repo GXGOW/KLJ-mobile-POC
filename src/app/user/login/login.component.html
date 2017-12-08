@@ -13,9 +13,10 @@
         <input formControlName="password" id="password" type="password" class="validate">
         <label for="password">Wachtwoord</label>
       </div>
+      <span class="errMsg">Gebruikersnaam of wachtwoord onjuist</span>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <button type="submit" class="waves-effect waves-light btn">Login</button>
+      <button type="submit" [disabled]='!user.valid' class="waves-effect waves-light btn">Login</button>
     </mat-dialog-actions>
   </form>
 </div>
