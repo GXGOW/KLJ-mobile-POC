@@ -26,7 +26,11 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/activities', function (req, res, next) {
-  Activity.find({})
+  Activity.find({
+      date: {
+        $gt: new Date()
+      }
+    })
     .lean()
     .populate('attendees', '-_id username firstname lastname')
     .populate('organisedBy', '-_id firstname lastname')
@@ -47,10 +51,13 @@ router.get('/activities_by_user', auth, function (req, res, next) {
   });
   prom.then(function (user) {
     Activity.find({
-      attendees: user._id
-    }).exec(function (err, activities) {
-      if (err) console.log(err);
-      res.send(activities);
+      attendees: user._id,
+      date: {
+        $gt: new Date()
+      }
+    }).sort('date').exec(function (err, activities) {
+      if (err) res.send(err);
+      else res.send(activities);
     })
   }).catch(function (err) {
     res.send(err.message);
@@ -110,7 +117,7 @@ router.post('/join_activity', auth, function (req, res, next) {
       bool = true;
     } else values[1].attendees.splice(values[1].attendees.indexOf([values[0]._id]));
     values[1].save(function (err, act) {
-      if (err) reject(new Error(err));
+      if (err) res.send(err);
       else res.send(bool);
     });
   }).catch(function (err) {
