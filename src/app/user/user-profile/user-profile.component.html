@@ -1,4 +1,4 @@
-<div id="row">
+<div class="row">
   <h1>
     Profiel
   </h1>
@@ -33,7 +33,7 @@
     </tr>
   </table>
   <h1>Overzicht komende activiteiten</h1>
-  <table class="striped">
+  <table *ngIf="(activities === undefined) else noAct" class="striped">
     <tr>
       <th>Naam</th>
       <th>Datum</th>
@@ -45,4 +45,7 @@
       <td>{{item.time}}</td>
     </tr>
   </table>
+  <ng-template #noAct>
+    <p>Er lijkt hier op dit moment niets te zien.</p>
+  </ng-template>
 </div>

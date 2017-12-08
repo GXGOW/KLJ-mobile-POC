@@ -11,13 +11,17 @@ import { Activity } from '../../act/activity.model';
 })
 export class UserProfileComponent implements OnInit {
   public user: User;
-  public activities: Activity[];
+  private _activities: Activity[];
   constructor(userDataService: UserDataService, activityDataService: ActivityDataService) {
     userDataService.userDetails.subscribe(item => this.user = item);
-    activityDataService.attendedActivities.subscribe(item => this.activities = item);
+    activityDataService.attendedActivities.subscribe(item => this._activities = item);
   }
 
   ngOnInit() {
+  }
+
+  get activities(): Activity[] {
+    return this._activities;
   }
 
 }
