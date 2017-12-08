@@ -8,7 +8,8 @@ var ActivitySchema = new Schema({
     required: true
   },
   description: {
-    type: String
+    type: String,
+    required: true
   },
   organisedBy: {
     type: Schema.Types.ObjectId,
@@ -16,11 +17,11 @@ var ActivitySchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now
+    default: new Date(new Date().setDate(new Date().getDate()+1))
   },
   location: {
     type: String,
-    default: 'KLJ lokaal'
+    default: 'KLJ lokaal',
   },
   image: {
     data: String,

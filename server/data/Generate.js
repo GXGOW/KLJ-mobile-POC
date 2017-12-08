@@ -11,6 +11,30 @@ exports.dummies = function () {
   Activity.remove({}, function (err) {
     console.log('Truncate table Activity');
   });
+  var users = [];
+  var user1 = new User({
+    firstname: 'Nicolas',
+    lastname: 'Loots',
+    username: 'nicolas.loots@outlook.be',
+    role: 'leader',
+    address: 'Koekoekstraat 64, Melle',
+    phoneNumber: '0474123456',
+    birthday: new Date('1997-02-14T01:00:00')
+  });
+  user1.setPassword('HermanVanVeen');
+  users.push(user1);
+
+  var user2 = new User({
+    firstname: 'Jef',
+    lastname: 'Malfliet',
+    username: 'jef.malfliet@kljhamme.be',
+    role: 'member',
+    address: 'Kleinedreef 12, Melsele',
+    phoneNumber: '0474123456',
+    birthday: new Date('1999-12-27T01:00:00')
+  });
+  user2.setPassword('HetKipMooi');
+  users.push(user2);
 
   var activities = [
     new Activity({
@@ -54,32 +78,6 @@ exports.dummies = function () {
       description: 'Avondje alleen maar de beste van de beste memes'
     })
   ];
-
-  var users = [];
-  var user1 = new User({
-    firstname: 'Nicolas',
-    lastname: 'Loots',
-    username: 'nicolas.loots@outlook.be',
-    role: 'leader',
-    address: 'Koekoekstraat 64, Melle',
-    phoneNumber: '0474123456',
-    birthday: new Date('1997-02-14T01:00:00')
-  });
-  user1.setPassword('HermanVanVeen');
-  users.push(user1);
-
-  var user2 = new User({
-    firstname: 'Jef',
-    lastname: 'Malfliet',
-    username: 'jef.malfliet@kljhamme.be',
-    role: 'member',
-    address: 'Kleinedreef 12, Melsele',
-    phoneNumber: '0474123456',
-    birthday: new Date('1999-12-27T01:00:00')
-  });
-  user2.setPassword('HetKipMooi');
-  users.push(user2);
-
   Activity.collection.insert(activities);
   User.collection.insert(users);
 }

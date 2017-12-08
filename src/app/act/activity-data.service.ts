@@ -41,5 +41,11 @@ export class ActivityDataService {
       .map(res => res.json());
   }
 
+  removeActivity(id): Observable<Boolean> {
+    return this.http.delete(`${this._appUrl}/remove_activity`,
+      { headers: new Headers({ activityId: id, Authorization: `Bearer ${this.auth.token}` }) })
+      .map(res => res.json());
+  }
+
 
 }

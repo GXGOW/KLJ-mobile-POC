@@ -33,19 +33,16 @@
     </tr>
   </table>
   <h1>Overzicht komende activiteiten</h1>
-  <table *ngIf="(activities === undefined) else noAct" class="striped">
+  <table class="striped">
     <tr>
       <th>Naam</th>
       <th>Datum</th>
       <th>Tijd</th>
     </tr>
     <tr *ngFor="let item of activities ">
-      <td>{{item.title}}</td>
-      <td>{{item.dateLong}}</td>
-      <td>{{item.time}}</td>
+      <td>{{item?.title}}</td>
+      <td>{{item?.dateLong}}</td>
+      <td>{{item?.time}}</td>
     </tr>
   </table>
-  <ng-template #noAct>
-    <p>Er lijkt hier op dit moment niets te zien.</p>
-  </ng-template>
 </div>
