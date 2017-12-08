@@ -1,3 +1,4 @@
+import { LogoutComponent } from './user/logout/logout.component';
 import { Observable } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -70,8 +71,11 @@ export class AppComponent implements OnInit {
     });
   }
 
-  logout(): void {
-    this.authService.logout();
-    location.reload();
+  logoutDialog(): void {
+    const dialog = this.dialog.open(LogoutComponent, {
+      width: '700px'
+    });
   }
+
+
 }

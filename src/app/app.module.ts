@@ -16,6 +16,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ActivityDetailComponent } from './act/activity-detail/activity-detail.component';
+import { LogoutComponent } from './user/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ActivityDetailComponent } from './act/activity-detail/activity-detail.c
     LoginComponent,
     RegisterComponent,
     UserProfileComponent,
-    ActivityDetailComponent
+    ActivityDetailComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { ActivityDetailComponent } from './act/activity-detail/activity-detail.c
     AddActivityComponent,
     LoginComponent,
     RegisterComponent,
+    LogoutComponent,
     ActivityDetailComponent
   ],
   bootstrap: [AppComponent]
