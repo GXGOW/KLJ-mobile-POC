@@ -85,7 +85,7 @@ export class AuthenticationService {
   checkUserName(username: string): Observable<boolean> {
     return this.http.post(`${this._url}/checkusername`, { username: username }).map(res => res.json())
       .map(item => {
-        return !item;
+        return item;
       });
   }
 

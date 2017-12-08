@@ -28,8 +28,8 @@ export class AddActivityComponent implements OnInit {
       title: ['', [Validators.required, Validators.minLength(2)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       date: ['', [Validators.required]],
-      time: [''],
-      location: [''],
+      time: ['', [Validators.required]],
+      location: ['', [Validators.required]],
       image: null
     });
     // Parent variable

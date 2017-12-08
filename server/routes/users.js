@@ -76,8 +76,8 @@ router.post('/checkusername', function (req, res, next) {
     username: req.body.username
   }, function (err, user) {
     if (err) res.send(err);
-    if (user) res.send(true);
-    else res.send(false);
+    if (user.length) res.send(false);
+    else res.send(true);
   });
 });
 
