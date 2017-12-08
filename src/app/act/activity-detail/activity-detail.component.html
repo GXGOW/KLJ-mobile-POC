@@ -18,7 +18,7 @@
       </tr>
       <tr>
         <th>Gegeven door</th>
-        <td>{{activity.organisedBy?.firstname}} {{activity.organisedBy?.lastname}}</td>
+        <td>{{activity.organisedBy}}</td>
       </tr>
       <tr>
         <th>Locatie</th>
@@ -27,8 +27,8 @@
       <tr>
         <th>Aanwezigen</th>
         <td>
-          <ul *ngFor="let item of activity.attendees">
-            <li>{{item.firstname}} {{item.lastname}}</li>
+          <ul *ngFor="let item of attendees">
+            <li>{{item}}</li>
           </ul>
         </td>
       </tr>

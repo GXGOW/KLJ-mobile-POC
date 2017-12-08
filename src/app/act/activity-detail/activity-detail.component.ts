@@ -40,6 +40,14 @@ export class ActivityDetailComponent implements OnInit {
     });
   }
 
+  get attendees(): string[] {
+    const ret = [];
+    this.activity.attendees.forEach(element => {
+      ret.push(element.firstname + ' ' + element.lastname);
+    });
+    return ret;
+  }
+
   close() {
     this.dialogRef.close();
   }
