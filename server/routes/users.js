@@ -71,4 +71,14 @@ router.get('/getByUsername', auth, function (req, res, next) {
     });
 });
 
+router.post('/checkusername', function (req, res, next) {
+  User.find({
+    username: req.body.username
+  }, function (err, user) {
+    if (err) res.send(err);
+    if (user) res.send(true);
+    else res.send(false);
+  });
+});
+
 module.exports = router;

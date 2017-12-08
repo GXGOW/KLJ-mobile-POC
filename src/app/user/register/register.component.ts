@@ -2,6 +2,7 @@ import { AuthenticationService } from '../authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { Observable } from 'rxjs/Rx';
 import * as moment from 'moment';
 declare const jquery: any;
 declare const $: any;
@@ -34,9 +35,8 @@ export class RegisterComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<RegisterComponent>, private authService: AuthenticationService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    // TODO SSV username
     this.user = this.fb.group({
-      username: ['', [Validators.required]],
+      username: ['', [Validators.required, Validators.minLength(8)], this.serverSideValidateUsername()],
       passwordGroup: this.fb.group({
         password: ['', [Validators.required, passwordValidator(12)]],
         confirmPassword: ['', Validators.required]
@@ -67,6 +67,17 @@ export class RegisterComponent implements OnInit {
         }
       }
     });
+  }
+
+  serverSideValidateUsername(): ValidatorFn {
+    return (control: AbstractControl): Observable<{ [key: string]: any }> => {
+      return this.authService.checkUserName(control.value).map(available => {
+        if (available) {
+          return null;
+        }
+        return { userAlreadyExists: true };
+      });
+    };
   }
 
   onSubmit() {

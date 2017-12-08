@@ -8,10 +8,11 @@
       <div class="input-field col s12">
         <input formControlName="username" id="username" type="text">
         <label for="username">E-mail
-          <span class='data-error errMsg' *ngIf='user.get("username").errors && user.get("username").touched'>Verplicht veld</span>
+          <span class='errMsg' *ngIf='user.get("username").errors?.required && user.get("username").touched'>Verplicht veld</span>
+          <span class='errMsg' *ngIf='user.get("username").errors?.userAlreadyExists && user.get("username").touched'>Gebruiker bestaat al</span>
         </label>
       </div>
-      <div class="multipleForms" formGroupName='passwordGroup'>
+      <div formGroupName='passwordGroup'>
         <div class="input-field col s6">
           <input formControlName="password" id="password" type="password">
           <label for="password">Wachtwoord
