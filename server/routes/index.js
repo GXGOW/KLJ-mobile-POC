@@ -79,10 +79,10 @@ router.post('/add_activity', auth, function (req, res, next) {
     new_activity.organisedBy = user;
     new_activity.save(function (err, act) {
       if (err) reject(new Error(err));
-      else res.send('success');
+      else res.send(true);
     });
   }).catch(function (err) {
-    res.send(err.message);
+    res.send(false);
   })
 });
 
