@@ -13,14 +13,20 @@ export class Activity {
     private _image: string | any;
 
     static fromJSON(json): Activity {
+        let organisedBy;
+        if (json.organisedBy) {
+            organisedBy = json.organisedBy.firstname + ' ' + json.organisedBy.lastname;
+        } else {
+            organisedBy = json.organisedBy;
+        }
         const act = new Activity(json.title, json.description, json.date, json.location,
-            json.image, json.organisedBy, json.attendees);
+            json.image, organisedBy, json.attendees);
         act._id = json._id;
         return act;
     }
 
     constructor(title: string, description: string, date?: Date, location?: string, image?: string | any, organisedBy?: string,
-        attendees?: any) {
+        attendees?: [{ username: string, firstname: string, lastname: string }]) {
         this._title = title;
         this._description = description;
         this._date = date;
