@@ -20,11 +20,21 @@ var UserSchema = new Schema({
     enum: ['leader', 'member'],
     default: 'member'
   },
-  firstname: String,
-  lastname: String,
-  address: String,
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
   phoneNumber: {
-    type: String
+    type: String,
+    required: true
   },
   birthday: {
     type: Date,

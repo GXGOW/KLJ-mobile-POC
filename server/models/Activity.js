@@ -8,7 +8,8 @@ var ActivitySchema = new Schema({
     required: true
   },
   description: {
-    type: String
+    type: String,
+    required: true
   },
   organisedBy: {
     type: Schema.Types.ObjectId,
@@ -20,7 +21,7 @@ var ActivitySchema = new Schema({
   },
   location: {
     type: String,
-    default: 'KLJ lokaal'
+    default: 'KLJ lokaal',
   },
   image: {
     data: String,
