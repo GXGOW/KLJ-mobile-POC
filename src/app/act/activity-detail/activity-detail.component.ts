@@ -24,8 +24,10 @@ export class ActivityDetailComponent implements OnInit {
   ngOnInit() {
     this.activity.attendees.forEach(element => {
       if (element.username === this._authenticationService.username) {
-        $('#attendBtn').removeClass('red');
-        $('#attendBtn').addClass('green');
+        setTimeout(function () {
+          $('#attendBtn').removeClass('red');
+          $('#attendBtn').addClass('green');
+        }, 1000);
       }
     });
   }
