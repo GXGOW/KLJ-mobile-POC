@@ -85,7 +85,7 @@ export class Activity {
     get time(): string {
         if (this._date) {
             const tempdate = new Date(this._date);
-            return tempdate.getHours() + ':' + tempdate.getMinutes();
+            return tempdate.getHours() + ':' + (tempdate.getMinutes() < 10 ? '0' + tempdate.getMinutes() : tempdate.getMinutes());
         }
         return '';
     }
