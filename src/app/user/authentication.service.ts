@@ -56,6 +56,7 @@ export class AuthenticationService {
   logout() {
     if (this.user$.getValue()) {
       localStorage.removeItem('currentUser');
+      sessionStorage.removeItem('dialogShown');
       setTimeout(() => this._user$.next(null));
     }
   }
